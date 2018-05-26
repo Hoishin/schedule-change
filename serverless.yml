@@ -1,0 +1,24 @@
+service: donation-tracker-crawler
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${self:tag}
+  environment:
+    TRACKER_ENDPOINT: ${self:endpoint}
+    SLS_STAGE: ${self:tag}
+  region: ap-southeast-1
+
+package:
+  exclude:
+    - yarn.lock
+  excludeDevDependencies: true
+
+functions:
+  main:
+    handler: handler.main
+    events:
+      - schedule: cron(*/6 * * * ? *)
+
+tag: ${opt:tag, 'dev'}
+endpoint: ${opt:endpoint}
