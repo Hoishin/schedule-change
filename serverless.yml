@@ -1,24 +1,18 @@
-service: donation-tracker-crawler
+service: DonationTrackerCrawler
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: ${self:tag}
+  stage: ${opt:event-uuid}
   environment:
-    TRACKER_ENDPOINT: ${self:endpoint}
-    SLS_STAGE: ${self:tag}
+    RUN_URL: ${opt:run-url}
+    RUNNER_URL: ${opt:runner-url}
+    SERVER_URL: ${opt:server-url}
+    EVENT_UUID: ${opt:event-uuid}
   region: ap-southeast-1
-
-package:
-  exclude:
-    - yarn.lock
-  excludeDevDependencies: true
 
 functions:
   main:
     handler: handler.main
     events:
-      - schedule: cron(*/6 * * * ? *)
-
-tag: ${opt:tag, 'dev'}
-endpoint: ${opt:endpoint}
+      - schedule: rate(6 minutes)
