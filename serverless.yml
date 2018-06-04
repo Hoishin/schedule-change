@@ -5,14 +5,18 @@ provider:
   runtime: nodejs8.10
   stage: ${opt:event-uuid}
   environment:
-    RUN_URL: ${opt:run-url}
-    RUNNER_URL: ${opt:runner-url}
+    TRACKER_URL: ${opt:tracker-url}
+    TRACKER_EVENT_ID: ${opt:tracker-event-id}
     SERVER_URL: ${opt:server-url}
     EVENT_UUID: ${opt:event-uuid}
   region: ap-southeast-1
 
 functions:
-  main:
-    handler: handler.main
+  runs:
+    handler: handler.runs
     events:
-      - schedule: rate(6 minutes)
+      - schedule: cron(0,12,24,36,48 * * ? *)
+  runners:
+    handler: handler.runners
+    events:
+      - schedule: cron(6,18,30,42,54 * * ? *)

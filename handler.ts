@@ -1,21 +1,36 @@
 type TrackerFetchedData = {[x: string]: any}[];
+type Type = 'run' | 'runner';
 
+import {URL} from 'url';
 import axios from 'axios';
 import {DynamoDB} from 'aws-sdk';
 import _ from 'lodash';
 import {Handler} from 'aws-lambda';
 
+if (!process.env.SERVER_URL) {
+	throw new TypeError('Server URL is not defined');
+}
+const serverUrl = new URL(process.env.SERVER_URL);
+if (!process.env.EVENT_UUID) {
+	throw new TypeError('Event UUID is not defined');
+}
+const eventUuid = process.env.EVENT_UUID;
+
 const docClient = new DynamoDB.DocumentClient();
 
-const serverEndpoint = process.env.SERVER_ENDPOINT!;
-const eventUuid = process.env.EVENT_UUID!;
-
-const fetchNewSchedule = async () => {
-	const [{data: runs}, {data: runners}] = await Promise.all([
-		axios.get(process.env.TRACKER_ENDPOINT_RUN!),
-		axios.get(process.env.TRACKER_ENDPOINT_RUNNERS!),
-	]);
-	return {runs, runners};
+const fetchNewSchedule = async (type: Type) => {
+	if (!process.env.TRACKER_URL) {
+		throw new TypeError('Tracker URL is not defined');
+	}
+	const eventId = process.env.TRACKER_EVENT_ID;
+	if (!eventId) {
+		throw new TypeError('Tracker event ID is not defined');
+	}
+	const trackerUrl = new URL(process.env.TRACKER_URL);
+	trackerUrl.searchParams.append('type', type);
+	trackerUrl.searchParams.append('event', eventId);
+	const res = await axios.get<TrackerFetchedData>(trackerUrl.toString());
+	return res.data;
 };
 
 const takeDiff = (oldOne: TrackerFetchedData, newOne: TrackerFetchedData) => {
@@ -34,44 +49,52 @@ const takeDiff = (oldOne: TrackerFetchedData, newOne: TrackerFetchedData) => {
 	return {deleted: oldOne, added};
 };
 
-const putToDb = (runs: TrackerFetchedData, runners: TrackerFetchedData) => {
+const dynamoPut = (eventUuid: string, type: Type, data: TrackerFetchedData) => {
 	return docClient
 		.put({
 			TableName: 'donation-tracker-crawler',
 			Item: {
 				eventUuid,
-				runs: JSON.stringify(runs),
-				runners: JSON.stringify(runners),
+				type,
+				data,
 			},
 		})
 		.promise();
 };
 
-const mainPromise = async () => {
-	const {runs, runners} = await fetchNewSchedule();
-	const {Item} = await docClient
+const refresh = async (type: Type) => {
+	const latest = await fetchNewSchedule(type);
+	const {Item: last} = await docClient
 		.get({
 			TableName: 'donation-tracker-crawler',
-			Key: {eventUuid},
-			AttributesToGet: ['runs', 'runners'],
+			Key: {eventUuid, type},
 		})
 		.promise();
-	if (!Item) {
-		await putToDb(runs, runners);
-		await axios.post(serverEndpoint, {runs, runners});
+	if (!last) {
+		await dynamoPut(eventUuid, type, latest);
+		await axios.post(serverUrl.toString(), {
+			type,
+			data: latest,
+		});
 		return;
 	}
-	const runsDiff = takeDiff(JSON.parse(Item.runs), runs);
-	const runnersDiff = takeDiff(JSON.parse(Item.runners), runners);
-	if (!runsDiff && !runnersDiff) {
+	const diff = takeDiff(JSON.parse(last.data), latest);
+	if (!diff) {
 		return;
 	}
-	await putToDb(runs, runners);
-	await axios.patch(serverEndpoint, {runs: runsDiff, runners: runnersDiff});
+	await dynamoPut(eventUuid, type, latest);
+	await axios.patch(serverUrl.toString(), {
+		type,
+		data: diff,
+	});
 };
 
-const main: Handler = () => {
-	mainPromise().catch(console.error);
+const runs: Handler = () => {
+	refresh('run').catch(console.error);
 };
 
-export {main};
+const runners: Handler = () => {
+	refresh('runner').catch(console.error);
+};
+
+export {runs, runners};
