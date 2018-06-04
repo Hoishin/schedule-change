@@ -56,7 +56,7 @@ const dynamoPut = (eventUuid: string, type: Type, data: TrackerFetchedData) => {
 			Item: {
 				eventUuid,
 				type,
-				data,
+				data: JSON.stringify(data),
 			},
 		})
 		.promise();
@@ -71,30 +71,30 @@ const refresh = async (type: Type) => {
 		})
 		.promise();
 	if (!last) {
-		await dynamoPut(eventUuid, type, latest);
 		await axios.post(serverUrl.toString(), {
 			type,
 			data: latest,
 		});
+		await dynamoPut(eventUuid, type, latest);
 		return;
 	}
 	const diff = takeDiff(JSON.parse(last.data), latest);
 	if (!diff) {
 		return;
 	}
-	await dynamoPut(eventUuid, type, latest);
 	await axios.patch(serverUrl.toString(), {
 		type,
 		data: diff,
 	});
+	await dynamoPut(eventUuid, type, latest);
 };
 
-const runs: Handler = () => {
+const run: Handler = () => {
 	refresh('run').catch(console.error);
 };
 
-const runners: Handler = () => {
+const runner: Handler = () => {
 	refresh('runner').catch(console.error);
 };
 
-export {runs, runners};
+export {run, runner};

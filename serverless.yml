@@ -12,11 +12,11 @@ provider:
   region: ap-southeast-1
 
 functions:
-  runs:
-    handler: handler.runs
+  run:
+    handler: handler.run
     events:
       - schedule: cron(0,12,24,36,48 * * ? *)
-  runners:
-    handler: handler.runners
+  runner:
+    handler: handler.runner
     events:
       - schedule: cron(6,18,30,42,54 * * ? *)
