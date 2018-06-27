@@ -3,10 +3,13 @@
 	"dependencies": {
 		"aws-sdk": "^2.250.1",
 		"axios": "^0.18.0",
+		"dotenv": "^6.0.0",
+		"format-json": "^1.0.3",
 		"lodash": "^4.17.10"
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "^8.10.6",
+		"@types/dotenv": "^4.0.3",
 		"@types/lodash": "^4.14.109",
 		"@types/node": "^10.3.0",
 		"prettier": "^1.13.4",

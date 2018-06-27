@@ -1,60 +1,106 @@
-type TrackerFetchedData = {[x: string]: any}[];
-type Type = 'run' | 'runner';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import {URL} from 'url';
 import axios from 'axios';
 import {DynamoDB} from 'aws-sdk';
 import _ from 'lodash';
 import {Handler} from 'aws-lambda';
+// @ts-ignore
+import json from 'format-json';
+import {Run, Type, RunFields} from './types';
 
-if (!process.env.SERVER_URL) {
-	throw new TypeError('Server URL is not defined');
-}
-const serverUrl = new URL(process.env.SERVER_URL);
-if (!process.env.EVENT_UUID) {
-	throw new TypeError('Event UUID is not defined');
-}
-const eventUuid = process.env.EVENT_UUID;
-
+const {
+	EVENT_NAME,
+	OUTPUT_WEBHOOK,
+	SYSTEM_WEBHOOK,
+	TRACKER_EVENT_ID,
+	TRACKER_URL,
+} = process.env;
+const TABLE_NAME = 'donation-tracker-crawler';
 const docClient = new DynamoDB.DocumentClient();
 
-const fetchNewSchedule = async (type: Type) => {
-	if (!process.env.TRACKER_URL) {
-		throw new TypeError('Tracker URL is not defined');
+const fetchSchedule = async (type: Type) => {
+	if (!TRACKER_URL) {
+		throw new Error('Missing TRACKER_URL');
 	}
-	const eventId = process.env.TRACKER_EVENT_ID;
-	if (!eventId) {
-		throw new TypeError('Tracker event ID is not defined');
+	if (!TRACKER_EVENT_ID) {
+		throw new Error('Missing TRACKER_EVENT_ID');
 	}
-	const trackerUrl = new URL(process.env.TRACKER_URL);
+	const trackerUrl = new URL(TRACKER_URL);
 	trackerUrl.searchParams.append('type', type);
-	trackerUrl.searchParams.append('event', eventId);
-	const res = await axios.get<TrackerFetchedData>(trackerUrl.toString());
+	trackerUrl.searchParams.append('event', TRACKER_EVENT_ID);
+	const res = await axios.get<Run[]>(trackerUrl.toString());
 	return res.data;
 };
 
-const takeDiff = (oldOne: TrackerFetchedData, newOne: TrackerFetchedData) => {
-	const added = newOne.filter(newItem => {
-		const oldItemIndex = oldOne.findIndex(oldItem =>
-			_.isEqual(newItem, oldItem)
-		);
-		if (oldItemIndex !== -1) {
-			oldOne.splice(oldItemIndex, 1);
-		}
-		return oldItemIndex === -1;
-	});
-	if (added.length === 0 && oldOne.length === 0) {
-		return;
-	}
-	return {deleted: oldOne, added};
+const compareFields = (beforeFields: RunFields, afterFields: RunFields) => {
+	const fields = Object.keys({
+		...beforeFields,
+		...afterFields,
+	}) as (keyof RunFields)[];
+
+	return fields
+		.map(field => {
+			const before = beforeFields[field];
+			const after = afterFields[field];
+
+			if (!_.isEqual(before, after)) {
+				return {field, before, after};
+			}
+			return;
+		})
+		.filter(Boolean);
 };
 
-const dynamoPut = (eventUuid: string, type: Type, data: TrackerFetchedData) => {
-	return docClient
+const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
+	const pks = _
+		.uniq([...beforeRuns.map(i => i.pk), ...afterRuns.map(i => i.pk)])
+		.sort();
+
+	const changed = [];
+	const added = [];
+	const deleted = [];
+
+	for (const pk of pks) {
+		const before = beforeRuns.find(i => i.pk === pk);
+		const after = afterRuns.find(i => i.pk === pk);
+
+		// exists in both
+		if (before && after) {
+			const diff = compareFields(before.fields, after.fields);
+			if (diff.length > 0) {
+				changed.push({pk, diff});
+			}
+			continue;
+		}
+
+		// exists in old, not in new
+		if (before && !after) {
+			deleted.push(before);
+			continue;
+		}
+
+		// exists in new, not in old
+		if (!before && after) {
+			added.push(after);
+			continue;
+		}
+	}
+
+	if (changed.length === 0 && added.length === 0 && deleted.length === 0) {
+		return;
+	}
+
+	return {changed, added, deleted};
+};
+
+const dynamoPut = async (eventName: string, type: Type, data: Run[]) => {
+	await docClient
 		.put({
-			TableName: 'donation-tracker-crawler',
+			TableName: TABLE_NAME,
 			Item: {
-				eventUuid,
+				eventName,
 				type,
 				data: JSON.stringify(data),
 			},
@@ -62,39 +108,101 @@ const dynamoPut = (eventUuid: string, type: Type, data: TrackerFetchedData) => {
 		.promise();
 };
 
-const refresh = async (type: Type) => {
-	const latest = await fetchNewSchedule(type);
-	const {Item: last} = await docClient
+const dynamoGet = async (eventName: string, type: Type) => {
+	const res = await docClient
 		.get({
-			TableName: 'donation-tracker-crawler',
-			Key: {eventUuid, type},
+			TableName: TABLE_NAME,
+			Key: {eventName, type},
 		})
 		.promise();
-	if (!last) {
-		await axios.post(serverUrl.toString(), {
-			type,
-			data: latest,
-		});
-		await dynamoPut(eventUuid, type, latest);
+	return res.Item;
+};
+
+const discordPost = async (url: string, username: string, content: string) => {
+	const params = {
+		username,
+		content,
+	};
+	await axios.post(url, params);
+};
+
+const discordOutput = async (content: string) => {
+	if (!OUTPUT_WEBHOOK) {
+		throw new Error('Missing OUTPUT_WEBHOOK');
+	}
+	if (!EVENT_NAME) {
+		throw new Error('Missing EVENT_NAME');
+	}
+	const webhookUrls = OUTPUT_WEBHOOK.split(',');
+	await Promise.all(
+		webhookUrls.map(url =>
+			discordPost(url, EVENT_NAME, content)
+		)
+	);
+};
+
+const discordSystem = async (content: string) => {
+	if (!SYSTEM_WEBHOOK) {
+		throw new Error('Missing SYSTEM_WEBHOOK');
+	}
+	if (!EVENT_NAME) {
+		throw new Error('Missing EVENT_NAME');
+	}
+	await discordPost(
+		SYSTEM_WEBHOOK,
+		EVENT_NAME,
+		content
+	);
+};
+
+const codeBlock = (content: string, language: string = '') => `
+\`\`\`${language}
+${content}
+\`\`\`
+`;
+
+const refresh = async (type: Type) => {
+	if (!EVENT_NAME) {
+		throw new Error('Missing EVENT_NAME');
+	}
+	const [dbData, afterRuns] = await Promise.all([
+		dynamoGet(EVENT_NAME, type),
+		fetchSchedule(type),
+	]);
+
+	if (!afterRuns) {
+		throw new Error('Failed to fetch latest runs');
+	}
+
+	if (!dbData) {
+		await Promise.all([
+			discordSystem('Data initialized'),
+			dynamoPut(EVENT_NAME, type, afterRuns),
+		]);
 		return;
 	}
-	const diff = takeDiff(JSON.parse(last.data), latest);
+
+	const beforeRuns = JSON.parse(dbData.data);
+	const diff = takeDiff(beforeRuns, afterRuns);
 	if (!diff) {
 		return;
 	}
-	await axios.patch(serverUrl.toString(), {
-		type,
-		data: diff,
-	});
-	await dynamoPut(eventUuid, type, latest);
+
+	const content = json.plain(diff);
+	await Promise.all([
+		discordOutput(codeBlock(content, 'json')),
+		dynamoPut(EVENT_NAME, type, afterRuns),
+	]);
 };
 
-const run: Handler = () => {
-	refresh('run').catch(console.error);
+export const run: Handler = () => {
+	refresh('run')
+		.then(() => discordSystem(`Function succeeded at ${new Date().toISOString()}`))
+		.catch(err => {
+			discordSystem(codeBlock(err.message));
+			console.error(err);
+		})
+		.catch(err => {
+			console.error(err);
+		});
 };
-
-const runner: Handler = () => {
-	refresh('runner').catch(console.error);
-};
-
-export {run, runner};

@@ -3,20 +3,18 @@ service: DonationTrackerCrawler
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: ${opt:event-uuid}
-  environment:
-    TRACKER_URL: ${opt:tracker-url}
-    TRACKER_EVENT_ID: ${opt:tracker-event-id}
-    SERVER_URL: ${opt:server-url}
-    EVENT_UUID: ${opt:event-uuid}
+  stage: dev
   region: ap-southeast-1
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource: "arn:aws:dynamodb:ap-southeast-1:*:*"
+
 
 functions:
   run:
     handler: handler.run
     events:
-      - schedule: cron(0,12,24,36,48 * * ? *)
-  runner:
-    handler: handler.runner
-    events:
-      - schedule: cron(6,18,30,42,54 * * ? *)
+      - schedule: cron(0/6 * * * ? *)
