@@ -10,13 +10,7 @@ import {Handler} from 'aws-lambda';
 import json from 'format-json';
 import {Run, Type, RunFields} from './types';
 
-const {
-	EVENT_NAME,
-	OUTPUT_WEBHOOK,
-	SYSTEM_WEBHOOK,
-	TRACKER_EVENT_ID,
-	TRACKER_URL,
-} = process.env;
+const {EVENT_NAME, OUTPUT_WEBHOOK, SYSTEM_WEBHOOK, TRACKER_EVENT_ID, TRACKER_URL} = process.env;
 const TABLE_NAME = 'donation-tracker-crawler';
 const docClient = new DynamoDB.DocumentClient();
 const fieldDiffKeys = [
@@ -47,10 +41,7 @@ const fetchSchedule = async (type: Type) => {
 	return res.data;
 };
 
-const compareFields = function*(
-	beforeFields: RunFields,
-	afterFields: RunFields
-) {
+const compareFields = function*(beforeFields: RunFields, afterFields: RunFields) {
 	const fields = Object.keys({
 		...beforeFields,
 		...afterFields,
@@ -66,9 +57,7 @@ const compareFields = function*(
 };
 
 const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
-	const pks = _
-		.uniq([...beforeRuns.map(i => i.pk), ...afterRuns.map(i => i.pk)])
-		.sort();
+	const pks = _.uniq([...beforeRuns.map(i => i.pk), ...afterRuns.map(i => i.pk)]).sort();
 
 	const diff: string[] = [];
 
@@ -78,13 +67,8 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in both
 		if (before && after) {
-			const fieldsDiff = [
-				...compareFields(before.fields, after.fields),
-			].map(
-				m =>
-					`**${before.fields.name}** \`${
-						m.field
-					}\` has been changed: ${m.before} -> ${m.after}`
+			const fieldsDiff = [...compareFields(before.fields, after.fields)].map(
+				m => `**${before.fields.name}** \`${m.field}\` has been changed: ${m.before} -> ${m.after}`
 			);
 			if (fieldsDiff) {
 				diff.push(...fieldsDiff);
@@ -147,9 +131,7 @@ const discordOutput = async (content: string) => {
 		throw new Error('Missing EVENT_NAME');
 	}
 	const webhookUrls = OUTPUT_WEBHOOK.split(',');
-	await Promise.all(
-		webhookUrls.map(url => discordPost(url, EVENT_NAME, content))
-	);
+	await Promise.all(webhookUrls.map(url => discordPost(url, EVENT_NAME, content)));
 };
 
 const discordSystem = async (content: string) => {
@@ -172,20 +154,14 @@ const refresh = async (type: Type) => {
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
-	const [dbData, afterRuns] = await Promise.all([
-		dynamoGet(EVENT_NAME, type),
-		fetchSchedule(type),
-	]);
+	const [dbData, afterRuns] = await Promise.all([dynamoGet(EVENT_NAME, type), fetchSchedule(type)]);
 
 	if (!afterRuns) {
 		throw new Error('Failed to fetch latest runs');
 	}
 
 	if (!dbData) {
-		await Promise.all([
-			discordSystem('Data initialized'),
-			dynamoPut(EVENT_NAME, type, afterRuns),
-		]);
+		await Promise.all([discordSystem('Data initialized'), dynamoPut(EVENT_NAME, type, afterRuns)]);
 		return;
 	}
 
@@ -195,10 +171,7 @@ const refresh = async (type: Type) => {
 		return;
 	}
 
-	await Promise.all([
-		discordOutput(diff.join('\n')),
-		dynamoPut(EVENT_NAME, type, afterRuns),
-	]);
+	await Promise.all([discordOutput(diff.join('\n')), dynamoPut(EVENT_NAME, type, afterRuns)]);
 };
 
 export const run: Handler = () => {
