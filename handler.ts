@@ -34,23 +34,26 @@ const fetchSchedule = async (type: Type) => {
 	return res.data;
 };
 
-const compareFields = (beforeFields: RunFields, afterFields: RunFields) => {
+const compareFields = function*(
+	beforeFields: RunFields,
+	afterFields: RunFields
+) {
 	const fields = Object.keys({
 		...beforeFields,
 		...afterFields,
 	}) as (keyof RunFields)[];
 
-	return fields
-		.map(field => {
-			const before = beforeFields[field];
-			const after = afterFields[field];
-
-			if (!_.isEqual(before, after)) {
-				return {field, before, after};
-			}
-			return;
-		})
-		.filter(Boolean);
+	for (const field of fields) {
+		const before = beforeFields[field];
+		const after = afterFields[field];
+		if (_.isEqual(before, after)) {
+			continue;
+		}
+		if (['starttime', 'endtime'].includes(field)) {
+			continue;
+		}
+		yield {field, before, after};
+	}
 };
 
 const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
@@ -58,9 +61,7 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 		.uniq([...beforeRuns.map(i => i.pk), ...afterRuns.map(i => i.pk)])
 		.sort();
 
-	const changed = [];
-	const added = [];
-	const deleted = [];
+	const diff: string[] = [];
 
 	for (const pk of pks) {
 		const before = beforeRuns.find(i => i.pk === pk);
@@ -68,31 +69,31 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in both
 		if (before && after) {
-			const diff = compareFields(before.fields, after.fields);
-			if (diff.length > 0) {
-				changed.push({pk, diff});
+			const fieldsDiff = [...compareFields(before.fields, after.fields)].map(
+				m =>
+					`${before.fields.name}'s ${m.field} has been changed: ${
+						m.before
+					} -> ${m.after}`
+			);
+			if (fieldsDiff) {
+				diff.push(...fieldsDiff);
 			}
 			continue;
 		}
 
 		// exists in old, not in new
 		if (before && !after) {
-			deleted.push(before);
+			diff.push(before.fields.name + 'has been deleted');
 			continue;
 		}
 
 		// exists in new, not in old
 		if (!before && after) {
-			added.push(after);
+			diff.push(after.fields.name + 'has been created');
 			continue;
 		}
 	}
-
-	if (changed.length === 0 && added.length === 0 && deleted.length === 0) {
-		return;
-	}
-
-	return {changed, added, deleted};
+	return diff;
 };
 
 const dynamoPut = async (eventName: string, type: Type, data: Run[]) => {
@@ -135,9 +136,7 @@ const discordOutput = async (content: string) => {
 	}
 	const webhookUrls = OUTPUT_WEBHOOK.split(',');
 	await Promise.all(
-		webhookUrls.map(url =>
-			discordPost(url, EVENT_NAME, content)
-		)
+		webhookUrls.map(url => discordPost(url, EVENT_NAME, content))
 	);
 };
 
@@ -148,11 +147,7 @@ const discordSystem = async (content: string) => {
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
-	await discordPost(
-		SYSTEM_WEBHOOK,
-		EVENT_NAME,
-		content
-	);
+	await discordPost(SYSTEM_WEBHOOK, EVENT_NAME, content);
 };
 
 const codeBlock = (content: string, language: string = '') => `
@@ -184,25 +179,32 @@ const refresh = async (type: Type) => {
 
 	const beforeRuns = JSON.parse(dbData.data);
 	const diff = takeDiff(beforeRuns, afterRuns);
-	if (!diff) {
+	if (diff.length === 0) {
 		return;
 	}
 
-	const content = json.plain(diff);
 	await Promise.all([
-		discordOutput(codeBlock(content, 'json')),
+		discordOutput(diff.join('\n')),
 		dynamoPut(EVENT_NAME, type, afterRuns),
 	]);
 };
 
 export const run: Handler = () => {
 	refresh('run')
-		.then(() => discordSystem(`Function succeeded at ${new Date().toISOString()}`))
+		.then(() =>
+			discordSystem(`Function succeeded at ${new Date().toISOString()}`)
+		)
 		.catch(err => {
 			discordSystem(codeBlock(err.message));
+			if (err.response) {
+				console.log(err.response.data)
+			}
 			console.error(err);
 		})
 		.catch(err => {
+			if (err.response) {
+				console.log(err.response.data)
+			}
 			console.error(err);
 		});
 };
