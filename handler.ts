@@ -19,6 +19,19 @@ const {
 } = process.env;
 const TABLE_NAME = 'donation-tracker-crawler';
 const docClient = new DynamoDB.DocumentClient();
+const fieldDiffKeys = [
+	'category',
+	'coop',
+	'console',
+	'name',
+	'setup_time',
+	'release_year',
+	'run_time',
+	'display_name',
+	'commentators',
+	'deprecated_runners',
+	'description',
+];
 
 const fetchSchedule = async (type: Type) => {
 	if (!TRACKER_URL) {
@@ -46,13 +59,9 @@ const compareFields = function*(
 	for (const field of fields) {
 		const before = beforeFields[field];
 		const after = afterFields[field];
-		if (_.isEqual(before, after)) {
-			continue;
+		if (!_.isEqual(before, after) && fieldDiffKeys.includes(field)) {
+			yield {field, before, after};
 		}
-		if (['starttime', 'endtime'].includes(field)) {
-			continue;
-		}
-		yield {field, before, after};
 	}
 };
 
@@ -69,11 +78,13 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in both
 		if (before && after) {
-			const fieldsDiff = [...compareFields(before.fields, after.fields)].map(
+			const fieldsDiff = [
+				...compareFields(before.fields, after.fields),
+			].map(
 				m =>
-					`${before.fields.name}'s ${m.field} has been changed: ${
-						m.before
-					} -> ${m.after}`
+					`**${before.fields.name}** \`${
+						m.field
+					}\` has been changed: ${m.before} -> ${m.after}`
 			);
 			if (fieldsDiff) {
 				diff.push(...fieldsDiff);
@@ -83,13 +94,13 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in old, not in new
 		if (before && !after) {
-			diff.push(before.fields.name + 'has been deleted');
+			diff.push('`' + before.fields.name + '` has been deleted');
 			continue;
 		}
 
 		// exists in new, not in old
 		if (!before && after) {
-			diff.push(after.fields.name + 'has been created');
+			diff.push('`' + after.fields.name + '` has been created');
 			continue;
 		}
 	}
@@ -120,6 +131,7 @@ const dynamoGet = async (eventName: string, type: Type) => {
 };
 
 const discordPost = async (url: string, username: string, content: string) => {
+	content = content.slice(0, 2000);
 	const params = {
 		username,
 		content,
@@ -191,19 +203,16 @@ const refresh = async (type: Type) => {
 
 export const run: Handler = () => {
 	refresh('run')
-		.then(() =>
-			discordSystem(`Function succeeded at ${new Date().toISOString()}`)
-		)
 		.catch(err => {
 			discordSystem(codeBlock(err.message));
 			if (err.response) {
-				console.log(err.response.data)
+				console.log(err.response.data);
 			}
 			console.error(err);
 		})
 		.catch(err => {
 			if (err.response) {
-				console.log(err.response.data)
+				console.log(err.response.data);
 			}
 			console.error(err);
 		});
