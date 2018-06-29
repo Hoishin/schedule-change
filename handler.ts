@@ -15,9 +15,7 @@ const fieldDiffKeys = [
 	FieldKey.Coop,
 	FieldKey.Console,
 	FieldKey.Name,
-	FieldKey.SetupTime,
 	FieldKey.ReleaseYear,
-	FieldKey.RunTime,
 	FieldKey.DisplayName,
 	FieldKey.Commentators,
 	FieldKey.DeprecatedRunners,
@@ -30,8 +28,7 @@ const fieldDiffKeys = [
  * @param before
  * @param after
  */
-const allPks = (before: Run[], after: Run[]) =>
-	_.uniq([...before.map(i => i.pk), ...after.map(i => i.pk)]).sort();
+const allPks = (before: Run[], after: Run[]) => _.uniq([...before.map(i => i.pk), ...after.map(i => i.pk)]).sort();
 
 const fetchSchedule = async (type: Type) => {
 	if (!TRACKER_URL) {
@@ -47,10 +44,7 @@ const fetchSchedule = async (type: Type) => {
 	return res.data;
 };
 
-const compareFields = function*(
-	beforeFields: RunFields,
-	afterFields: RunFields
-) {
+const compareFields = function*(beforeFields: RunFields, afterFields: RunFields) {
 	for (const field of fieldDiffKeys) {
 		const before = beforeFields[field];
 		const after = afterFields[field];
@@ -60,11 +54,9 @@ const compareFields = function*(
 	}
 };
 
-const takeFieldDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
+const takeFieldDiff = function*(beforeRuns: Run[], afterRuns: Run[]): IterableIterator<string> {
 	// merge all pks and take unique sorted list
 	const pks = allPks(beforeRuns, afterRuns);
-
-	const diff: string[] = [];
 
 	for (const pk of pks) {
 		const before = beforeRuns.find(i => i.pk === pk);
@@ -72,66 +64,77 @@ const takeFieldDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in both
 		if (before && after) {
-			const fieldsDiff = [
-				...compareFields(before.fields, after.fields),
-			].map(
-				m =>
-					`**${before.fields.name}** \`${
-						m.field
-					}\` has been changed: ${m.before} -> ${m.after}`
+			yield* [...compareFields(before.fields, after.fields)].map(
+				m => `**${before.fields.name}** \`${m.field}\` has been changed: ${m.before} → ${m.after}`
 			);
-			if (fieldsDiff) {
-				diff.push(...fieldsDiff);
-			}
 			continue;
 		}
 
 		// exists in old, not in new
 		if (before && !after) {
-			diff.push('`' + before.fields.name + '` has been deleted');
+			yield '`' + before.fields.name + '` has been deleted';
 			continue;
 		}
 
 		// exists in new, not in old
 		if (!before && after) {
-			diff.push('`' + after.fields.name + '` has been created');
+			yield '`' + after.fields.name + '` has been created';
 			continue;
 		}
 	}
-	return diff;
+};
+
+const takeOrderDiff = function*(beforeRuns: Run[], afterRuns: Run[]): IterableIterator<string> {
+	for (const afterRun of afterRuns) {
+		const beforeRun = beforeRuns.find(run => run.pk === afterRun.pk);
+		if (!beforeRun) {
+			continue;
+		}
+		const beforeOrder = beforeRun.fields[FieldKey.Order];
+		const afterOrder = afterRun.fields[FieldKey.Order];
+		if (beforeOrder === afterOrder) {
+			continue;
+		}
+		if (beforeOrder < afterOrder) {
+			yield `**${afterRun.fields.name}**: ⬇`
+		}
+		if (beforeOrder > afterOrder) {
+			yield `**${afterRun.fields.name}**: ⬆`
+		}
+	}
 };
 
 const refresh = async (type: Type) => {
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
-	const [dbData, afterRuns] = await Promise.all([
-		dynamo.get(EVENT_NAME, type),
-		fetchSchedule(type),
-	]);
+	const [dbData, afterRuns] = await Promise.all([dynamo.get(EVENT_NAME, type), fetchSchedule(type)]);
 
 	if (!afterRuns) {
 		throw new Error('Failed to fetch latest runs');
 	}
 
 	if (!dbData) {
-		await Promise.all([
-			discord.system('Data initialized'),
-			dynamo.put(EVENT_NAME, type, afterRuns),
-		]);
+		await Promise.all([discord.system('Data initialized'), dynamo.put(EVENT_NAME, type, afterRuns)]);
 		return;
 	}
 
 	const beforeRuns = JSON.parse(dbData.data);
-	const diff = takeFieldDiff(beforeRuns, afterRuns);
-	if (diff.length === 0) {
-		return;
+	const fieldDiff = [...takeFieldDiff(beforeRuns, afterRuns)];
+	const orderDiff = [...takeOrderDiff(beforeRuns, afterRuns)];
+
+	const makePromises = () => {
+		const promises: Promise<any>[] = [];
+		if (fieldDiff.length > 0) {
+			promises.push(discord.output(fieldDiff.join('\n')));
+		}
+		if (orderDiff.length > 0) {
+			promises.push(discord.output('**Order has been changed!**\n' + orderDiff.join('\n')));
+		}
+		return promises
 	}
 
-	await Promise.all([
-		discord.output(diff.join('\n')),
-		dynamo.put(EVENT_NAME, type, afterRuns),
-	]);
+	await Promise.all([...makePromises(), dynamo.put(EVENT_NAME, type, afterRuns)]);
 };
 
 export const run: Handler = () => {
