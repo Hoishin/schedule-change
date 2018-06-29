@@ -3,27 +3,35 @@ dotenv.config();
 
 import {URL} from 'url';
 import axios from 'axios';
-import {DynamoDB} from 'aws-sdk';
 import _ from 'lodash';
 import {Handler} from 'aws-lambda';
-import {Run, Type, RunFields} from './types';
+import {Run, Type, RunFields, FieldKey} from './types';
+import * as discord from './discord';
+import * as dynamo from './dynamo';
 
-const {EVENT_NAME, OUTPUT_WEBHOOK, SYSTEM_WEBHOOK, TRACKER_EVENT_ID, TRACKER_URL} = process.env;
-const TABLE_NAME = 'donation-tracker-crawler';
-const docClient = new DynamoDB.DocumentClient();
+const {EVENT_NAME, TRACKER_EVENT_ID, TRACKER_URL} = process.env;
 const fieldDiffKeys = [
-	'category',
-	'coop',
-	'console',
-	'name',
-	'setup_time',
-	'release_year',
-	'run_time',
-	'display_name',
-	'commentators',
-	'deprecated_runners',
-	'description',
+	FieldKey.Category,
+	FieldKey.Coop,
+	FieldKey.Console,
+	FieldKey.Name,
+	FieldKey.SetupTime,
+	FieldKey.ReleaseYear,
+	FieldKey.RunTime,
+	FieldKey.DisplayName,
+	FieldKey.Commentators,
+	FieldKey.DeprecatedRunners,
+	FieldKey.Description,
 ];
+
+//
+/**
+ * Merge all pks and take unique sorted list
+ * @param before
+ * @param after
+ */
+const allPks = (before: Run[], after: Run[]) =>
+	_.uniq([...before.map(i => i.pk), ...after.map(i => i.pk)]).sort();
 
 const fetchSchedule = async (type: Type) => {
 	if (!TRACKER_URL) {
@@ -39,23 +47,22 @@ const fetchSchedule = async (type: Type) => {
 	return res.data;
 };
 
-const compareFields = function*(beforeFields: RunFields, afterFields: RunFields) {
-	const fields = Object.keys({
-		...beforeFields,
-		...afterFields,
-	}) as (keyof RunFields)[];
-
-	for (const field of fields) {
+const compareFields = function*(
+	beforeFields: RunFields,
+	afterFields: RunFields
+) {
+	for (const field of fieldDiffKeys) {
 		const before = beforeFields[field];
 		const after = afterFields[field];
-		if (!_.isEqual(before, after) && fieldDiffKeys.includes(field)) {
+		if (!_.isEqual(before, after)) {
 			yield {field, before, after};
 		}
 	}
 };
 
-const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
-	const pks = _.uniq([...beforeRuns.map(i => i.pk), ...afterRuns.map(i => i.pk)]).sort();
+const takeFieldDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
+	// merge all pks and take unique sorted list
+	const pks = allPks(beforeRuns, afterRuns);
 
 	const diff: string[] = [];
 
@@ -65,8 +72,13 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 
 		// exists in both
 		if (before && after) {
-			const fieldsDiff = [...compareFields(before.fields, after.fields)].map(
-				m => `**${before.fields.name}** \`${m.field}\` has been changed: ${m.before} -> ${m.after}`
+			const fieldsDiff = [
+				...compareFields(before.fields, after.fields),
+			].map(
+				m =>
+					`**${before.fields.name}** \`${
+						m.field
+					}\` has been changed: ${m.before} -> ${m.after}`
 			);
 			if (fieldsDiff) {
 				diff.push(...fieldsDiff);
@@ -89,97 +101,44 @@ const takeDiff = (beforeRuns: Run[], afterRuns: Run[]) => {
 	return diff;
 };
 
-const dynamoPut = async (eventName: string, type: Type, data: Run[]) => {
-	await docClient
-		.put({
-			TableName: TABLE_NAME,
-			Item: {
-				eventName,
-				type,
-				data: JSON.stringify(data),
-			},
-		})
-		.promise();
-};
-
-const dynamoGet = async (eventName: string, type: Type) => {
-	const res = await docClient
-		.get({
-			TableName: TABLE_NAME,
-			Key: {eventName, type},
-		})
-		.promise();
-	return res.Item;
-};
-
-const discordPost = async (url: string, username: string, content: string) => {
-	content = content.slice(0, 2000);
-	const params = {
-		username,
-		content,
-	};
-	await axios.post(url, params);
-};
-
-const discordOutput = async (content: string) => {
-	if (!OUTPUT_WEBHOOK) {
-		throw new Error('Missing OUTPUT_WEBHOOK');
-	}
-	if (!EVENT_NAME) {
-		throw new Error('Missing EVENT_NAME');
-	}
-	const webhookUrls = OUTPUT_WEBHOOK.split(',');
-	await Promise.all(webhookUrls.map(url => discordPost(url, EVENT_NAME, content)));
-};
-
-const discordSystem = async (content: string) => {
-	if (!SYSTEM_WEBHOOK) {
-		throw new Error('Missing SYSTEM_WEBHOOK');
-	}
-	if (!EVENT_NAME) {
-		throw new Error('Missing EVENT_NAME');
-	}
-	await discordPost(SYSTEM_WEBHOOK, EVENT_NAME, content);
-};
-
-const codeBlock = (content: string, language: string = '') => `
-\`\`\`${language}
-${content}
-\`\`\`
-`;
-
 const refresh = async (type: Type) => {
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
-	const [dbData, afterRuns] = await Promise.all([dynamoGet(EVENT_NAME, type), fetchSchedule(type)]);
+	const [dbData, afterRuns] = await Promise.all([
+		dynamo.get(EVENT_NAME, type),
+		fetchSchedule(type),
+	]);
 
 	if (!afterRuns) {
 		throw new Error('Failed to fetch latest runs');
 	}
 
 	if (!dbData) {
-		await Promise.all([discordSystem('Data initialized'), dynamoPut(EVENT_NAME, type, afterRuns)]);
+		await Promise.all([
+			discord.system('Data initialized'),
+			dynamo.put(EVENT_NAME, type, afterRuns),
+		]);
 		return;
 	}
 
 	const beforeRuns = JSON.parse(dbData.data);
-	const diff = takeDiff(beforeRuns, afterRuns);
+	const diff = takeFieldDiff(beforeRuns, afterRuns);
 	if (diff.length === 0) {
 		return;
 	}
 
-	await Promise.all([discordOutput(diff.join('\n')), dynamoPut(EVENT_NAME, type, afterRuns)]);
+	await Promise.all([
+		discord.output(diff.join('\n')),
+		dynamo.put(EVENT_NAME, type, afterRuns),
+	]);
 };
 
 export const run: Handler = () => {
 	refresh('run')
 		.catch(err => {
-			discordSystem(codeBlock(err.message));
-			if (err.response) {
-				console.log(err.response.data);
-			}
-			console.error(err);
+			discord.system(err.message);
+			console.error(String(err));
 		})
 		.catch(err => {
 			if (err.response) {
