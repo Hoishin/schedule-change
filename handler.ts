@@ -6,8 +6,6 @@ import axios from 'axios';
 import {DynamoDB} from 'aws-sdk';
 import _ from 'lodash';
 import {Handler} from 'aws-lambda';
-// @ts-ignore
-import json from 'format-json';
 import {Run, Type, RunFields} from './types';
 
 const {EVENT_NAME, OUTPUT_WEBHOOK, SYSTEM_WEBHOOK, TRACKER_EVENT_ID, TRACKER_URL} = process.env;
