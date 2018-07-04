@@ -1,5 +1,5 @@
 {
-	"include": ["*.ts"],
+	"include": ["src/**/*.ts"],
 	"compilerOptions": {
 		"target": "es2017",
 		"module": "commonjs",
@@ -9,6 +9,7 @@
 		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"outDir": "build"
 	}
 }

@@ -105,6 +105,7 @@ const takeOrderDiff = function*(beforeRuns: Run[], afterRuns: Run[]): IterableIt
 };
 
 const refresh = async (type: Type) => {
+	discord.system('hogehoge')
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
