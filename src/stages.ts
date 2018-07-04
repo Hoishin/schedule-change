@@ -15,13 +15,11 @@ export class BaseFetcher<T, U> {
 }
 
 export class BaseComparer<U, V> {
-	private readonly comparers: Array<(beforeItem: U, afterItem: U) => V>
+	private readonly comparers: Array<(beforeItem: U, afterItem: U) => V>;
 
 	constructor(...comparers: Array<(beforeItem: U, afterItem: U) => V>) {
-		this.comparers = comparers
+		this.comparers = comparers;
 	}
 
-	compare(beforeItem: U, afterItem: U) {
-
-	}
+	compare(beforeItem: U, afterItem: U) {}
 }

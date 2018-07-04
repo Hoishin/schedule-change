@@ -96,16 +96,15 @@ const takeOrderDiff = function*(beforeRuns: Run[], afterRuns: Run[]): IterableIt
 			continue;
 		}
 		if (beforeOrder < afterOrder) {
-			yield `**${afterRun.fields.name}**: ⬇`
+			yield `**${afterRun.fields.name}**: ⬇`;
 		}
 		if (beforeOrder > afterOrder) {
-			yield `**${afterRun.fields.name}**: ⬆`
+			yield `**${afterRun.fields.name}**: ⬆`;
 		}
 	}
 };
 
 const refresh = async (type: Type) => {
-	discord.system('hogehoge')
 	if (!EVENT_NAME) {
 		throw new Error('Missing EVENT_NAME');
 	}
@@ -132,8 +131,8 @@ const refresh = async (type: Type) => {
 		if (orderDiff.length > 0) {
 			promises.push(discord.output('**Order has been changed!**\n' + orderDiff.join('\n')));
 		}
-		return promises
-	}
+		return promises;
+	};
 
 	await Promise.all([...makePromises(), dynamo.put(EVENT_NAME, type, afterRuns)]);
 };
