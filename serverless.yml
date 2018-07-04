@@ -15,6 +15,6 @@ provider:
 
 functions:
   run:
-    handler: handler.run
+    handler: main.run
     events:
       - schedule: cron(0/6 * * * ? *)
