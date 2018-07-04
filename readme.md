@@ -1,12 +1,16 @@
 # Schedule Change
 
-Microservice to fetch schedule of an event and send changes to Discord webhook.
+Microservice to fetch speedrunning events schedule and notify changes to Discord webhook. Made for language restreamers.
 
-This app is intended to be used with [Serverless Framework with AWS Lambda](https://serverless.com/framework/docs/providers/aws/guide/quick-start/).
+Written in TypeScript. Run `yarn build` to compile.
 
-## Deploy
+This app is designed to be used with [AWS Lambda with Serverless Framework](https://serverless.com/framework/docs/providers/aws/guide/quick-start/).
 
-First setup `.env` file in this directory.
+The `main.js` file exposes the API after compiling.
+
+## Deploy to AWS Lambda
+
+First setup `.env` file in this directory. It will be available in runtime with `dotenv`.
 
 For example, for GDQ's donation tracker,
 
@@ -27,10 +31,21 @@ sls deploy -s MYEVENT2050
 
 ## Invoke
 
-It runs every 6 minutes, but you can manually invoke the function
+It runs every 6 minutes by default, but you can manually invoke the function.
 
 ```bash
 sls invoke [local] -f run -s MYEVENT2050
 ```
 
-Adding local runs the function in local machine.
+Adding `local` lets you run the function on your local machine instead of actual AWS Lambda instances.
+
+## Customize for other endpoints (*Future plan)
+
+This service is devided into 4 main stages.
+
+- `Fetcher`: Fetch, parse, and abstract the latest schedule
+- `Comparer`: Compare with last schedule and get diff
+- `Formatter`: Format the diff into human-readable string
+- `Notifier`: Send notification to Discord
+
+Also, as side jobs, it saves the latest schedule data to DB, and notify errors to system output.
