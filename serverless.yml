@@ -1,12 +1,12 @@
-service: DonationTrackerCrawler
+service: schedule-change
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: dev
+  stage: development
   region: ap-southeast-1
-	environment:
-		TABLE_NAME: 'schedule-change'
+  environment:
+    TABLE_NAME: schedule-change-${opt:stage}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
@@ -16,6 +16,22 @@ provider:
 
 functions:
   sgdq2018:
-    handler: main.sgdq2018.run
+    handler: main.sgdq2018
     events:
       - schedule: cron(0/6 * * * ? *)
+
+resources:
+  Resources:
+    scheduleChangeTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: schedule-change-${opt:stage}
+        AttributeDefinitions:
+          - AttributeName: eventName
+            AttributeType: S
+        KeySchema:
+          - AttributeName: eventName
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
