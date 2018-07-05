@@ -1,7 +1,7 @@
 import {DynamoDB} from 'aws-sdk';
 
 const docClient = new DynamoDB.DocumentClient();
-const TABLE_NAME = process.env.TABLE_NAME || 'schedule-change';
+const TABLE_NAME = process.env.TABLE_NAME!;
 
 export class DynamoClient<P> {
 	async get(eventName: string) {
