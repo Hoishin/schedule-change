@@ -5,6 +5,8 @@ provider:
   runtime: nodejs8.10
   stage: dev
   region: ap-southeast-1
+	environment:
+		TABLE_NAME: 'schedule-change'
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
@@ -12,9 +14,8 @@ provider:
         - dynamodb:PutItem
       Resource: "arn:aws:dynamodb:ap-southeast-1:*:*"
 
-
 functions:
-  run:
-    handler: main.run
+  sgdq2018:
+    handler: main.sgdq2018.run
     events:
       - schedule: cron(0/6 * * * ? *)
