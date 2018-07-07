@@ -6,41 +6,60 @@ import {DiscordClient} from './discord';
 
 export {DynamoClient, DiscordClient};
 
-export const scheduleChange = async <T, U>(
+export const scheduleChange = async <O, I, D>(
 	eventName: string,
 	url: URL,
-	parser: (data: T) => U[],
-	...comparers: Array<(before: U[], after: U[]) => string | void>
+	parser: (data: O) => ScheduleData<I, D>,
+	...comparers: Array<
+		(before: ScheduleData<I, D>, after: ScheduleData<I, D>) => string | void
+	>
 ) => {
-	const dynamoClient = new DynamoClient<U>();
+	const dynamoClient = new DynamoClient<ScheduleData<I, D>>();
 	const discordClient = new DiscordClient(eventName);
 
 	try {
 		// Fetch the latest schedule and get last-fetched schedule from DB
-		const [beforeSchedule, fetchedSchedule] = await Promise.all([
+		const [before, fetchedSchedule] = await Promise.all([
 			dynamoClient.get(eventName),
-			axios.get<T>(url.toString()),
+			axios.get<O>(url.toString()),
 		]);
-		const afterSchedule = parser(fetchedSchedule.data);
+		const after = parser(fetchedSchedule.data);
 
 		// If this is the first time (=== no relevent data in DB), initialize and exit
-		if (typeof beforeSchedule === 'undefined') {
+		if (typeof before === 'undefined') {
 			await Promise.all([
 				discordClient.system(`Data initialized for ${eventName}`),
-				dynamoClient.put(eventName, afterSchedule),
+				dynamoClient.put(eventName, after),
 			]);
 			return;
 		}
 
+		// Compare and get message strings. If it's empty, exit.
+		const messages: string[] = [];
+		for (const comparer of comparers) {
+			const message = comparer(before, after);
+			if (message !== undefined) {
+				messages.push(message);
+			}
+		}
+		if (messages.length === 0) {
+			return;
+		}
+
+		// Send messages to Discord
 		await Promise.all(
-			comparers
-				.map(comparer => comparer(beforeSchedule, afterSchedule))
-				.filter(Boolean)
-				.map(message => discordClient.output(message || ''))
+			messages.map(message => discordClient.output(message))
 		);
-		await dynamoClient.put(eventName, afterSchedule);
+
+		// Save new schedule
+		await dynamoClient.put(eventName, after);
 	} catch (err) {
 		console.trace(err);
 		discordClient.system(err.message).catch(console.trace);
 	}
 };
+
+interface ScheduleData<I, D> {
+	schedule: I[];
+	data?: D;
+}

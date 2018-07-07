@@ -95,20 +95,20 @@ export default () => {
 	scheduleChange(
 		'SGDQ2018',
 		url,
-		(data: Run[]) => data,
+		(data: Run[]) => ({schedule: data}),
 		(before, after) => {
-			const result = [...takeFieldDiff(before, after)]
+			const result = [...takeFieldDiff(before.schedule, after.schedule)];
 			if (result.length === 0) {
-				return
+				return;
 			}
-			return '**Schedule changed!**\n' + result.join('\n')
+			return '**Schedule changed!**\n' + result.join('\n');
 		},
 		(before, after) => {
-			const result = [...takeOrderDiff(before, after)]
+			const result = [...takeOrderDiff(before.schedule, after.schedule)];
 			if (result.length === 0) {
-				return
+				return;
 			}
-			return '**Order Changed!**\n' + result.join('\n')
+			return '**Order Changed!**\n' + result.join('\n');
 		}
 	);
 };
