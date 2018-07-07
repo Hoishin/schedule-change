@@ -3,7 +3,7 @@ service: schedule-change
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: development
+  stage: ${opt:stage}
   region: ap-southeast-1
   environment:
     TABLE_NAME: schedule-change-${opt:stage}
@@ -16,7 +16,7 @@ provider:
 
 functions:
   sgdq2018:
-    handler: main.sgdq2018
+    handler: build/sgdq2018.default
     events:
       - schedule: cron(0/6 * * * ? *)
 

@@ -1,6 +1,7 @@
-import {ScheduleChange, Fetcher, Comparer, Formatter} from './lib';
 import {URL} from 'url';
 import _ from 'lodash';
+
+import {scheduleChange} from './lib';
 
 const url = new URL('https://gamesdonequick.com/tracker/search');
 url.searchParams.append('type', 'run');
@@ -46,9 +47,9 @@ const takeFieldDiff = function*(
 		if (before && after) {
 			yield* [...compareFields(before.fields, after.fields)].map(
 				m =>
-					`**${before.fields.name}** \`${
-						m.field
-					}\` has been changed: ${m.before} → ${m.after}`
+					`**${before.fields.name}**: ${m.field} has been changed: ${
+						m.before
+					} → ${m.after}`
 			);
 			continue;
 		}
@@ -90,19 +91,19 @@ const takeOrderDiff = function*(
 	}
 };
 
-export const sgdq2018 = new ScheduleChange<Run, Run, string>(
-	'SGDQ2018',
-	new Fetcher(url, undefined, run => run),
-	new Comparer([
-		(b, a) => [...takeFieldDiff(b, a)],
-		(b, a) => [...takeOrderDiff(b, a)],
-	]),
-	new Formatter([result => result.join('\n')])
-);
-
-/**
- * Type Definitions Below
- */
+export default () => {
+	scheduleChange(
+		'SGDQ2018',
+		url,
+		(data: Run[]) => data,
+		(before, after) =>
+			'**Schedule changed!**\n' +
+			[...takeFieldDiff(before, after)].join('\n'),
+		(before, after) =>
+			'**Order Changed!**\n' +
+			[...takeOrderDiff(before, after)].join('\n')
+	);
+};
 
 interface Run {
 	pk: number;
