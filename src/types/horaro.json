@@ -1,0 +1,2207 @@
+{
+	"data": {
+		"id": "2211jgbb8x43m97a13",
+		"name": "2018 (Stream One)",
+		"slug": "2018-one",
+		"timezone": "Europe/Berlin",
+		"start": "2018-07-21T16:00:00+02:00",
+		"start_t": 1532181600,
+		"website": "http://www.esamarathon.com/",
+		"twitter": "esamarathon",
+		"twitch": "esamarathon",
+		"description":
+			"![ESA Header Banner](https://i.imgur.com/ZBL8ssk.png)\r\n\r\nESA Summer 2018 is a speedrunning centred community meet-up and marathon. The doors of the event area at the Quality Hotel View in Malm\u00f6 are open from Friday the 20th of July until Sunday the 29th of July.\r\n\r\nSETUP Games: These are buffer blocks that give us an opportunity to tackle delays. The games will be played in their specified timeslot if the marathon is not too far behind the original schedule at that point. If we are, they will be pushed to the last day of the 2nd stream. Decisions will be made several hours before the run is scheduled. That means all SETUP Games will definitely get shown.\r\n\r\nIntermission: Short games that will fill longer setup times.",
+		"setup": "PT10M",
+		"setup_t": 600,
+		"updated": "2018-07-07T14:59:29Z",
+		"hidden_columns": ["Layout", "Info"],
+		"link": "https://horaro.org/esa/2018-one",
+		"columns": [
+			"Game",
+			"Player(s)",
+			"Platform",
+			"Category",
+			"Note",
+			"Layout",
+			"Info"
+		],
+		"items": [
+			{
+				"length": "PT2H",
+				"length_t": 7200,
+				"scheduled": "2018-07-21T16:00:00+02:00",
+				"scheduled_t": 1532181600,
+				"data": [
+					"[Dark Souls III](https://www.speedrun.com/darksouls3#All_Bosses)",
+					"[Fudgecow](https://www.twitch.tv/fudgecow) vs. [SayviTV](https://www.twitch.tv/SayviTV)",
+					"PC",
+					"All Bosses",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-21T18:10:00+02:00",
+				"scheduled_t": 1532189400,
+				"data": [
+					"[God of War](https://www.speedrun.com/gow#Any_NG%2B)",
+					"[ThaRixer](https://www.twitch.tv/ThaRixer)",
+					"PS3",
+					"Any% (NG+)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-21T19:50:00+02:00",
+				"scheduled_t": 1532195400,
+				"data": [
+					"[Cuphead](https://www.speedrun.com/cuphead#All_Bosses)",
+					"[Kirthar](https://www.twitch.tv/kirthar)",
+					"PC",
+					"All Bosses (Regular, Legacy)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-21T20:35:00+02:00",
+				"scheduled_t": 1532198100,
+				"data": [
+					"[Super Mario Land 2: 6 Golden Coins](https://www.speedrun.com/sml2#Any_Glitchless)",
+					"[Oh_DeeR](https://www.twitch.tv/Oh_DeeR) vs. [LateLearner](https://www.twitch.tv/LateLearner)",
+					"SNES (Super Game Boy 2)",
+					"Any% (Glitchless)",
+					"Race",
+					"gb-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT09M",
+				"length_t": 540,
+				"scheduled": "2018-07-21T21:15:00+02:00",
+				"scheduled_t": 1532200500,
+				"data": [
+					"[Gremlins 2: The New Batch](https://www.speedrun.com/gremlins2nes#Any)",
+					"[EndySWE](https://www.twitch.tv/endyswe)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT15M",
+				"length_t": 900,
+				"scheduled": "2018-07-21T21:34:00+02:00",
+				"scheduled_t": 1532201640,
+				"data": [
+					"[Darkwing Duck](https://www.speedrun.com/dwd#Any)",
+					"[TheMexicanRunner](https://www.twitch.tv/TheMexicanRunner) vs. [Jokaah](https://www.twitch.tv/jokaah)",
+					"NES",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-21T21:59:00+02:00",
+				"scheduled_t": 1532203140,
+				"data": [
+					"[Castle of Illusion HD](https://www.speedrun.com/castle_of_illusion_hd#Any)",
+					"[KrazyRasmus](https://www.twitch.tv/krazyrasmus)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT45M",
+				"length_t": 2700,
+				"scheduled": "2018-07-21T22:49:00+02:00",
+				"scheduled_t": 1532206140,
+				"data": [
+					"[Hollow Knight](https://www.speedrun.com/hollowknight#Any)",
+					"[Ushebti](https://www.twitch.tv/ushebti)",
+					"PC",
+					"Any% (No Major Glitches)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H20M",
+				"length_t": 4800,
+				"scheduled": "2018-07-21T23:44:00+02:00",
+				"scheduled_t": 1532209440,
+				"data": [
+					"[Ratchet \u0026 Clank](https://www.speedrun.com/rac1#All_Gold_Bolts)",
+					"[Janky](https://www.twitch.tv/Janky)",
+					"PS3",
+					"All Gold Bolts",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H15M",
+				"length_t": 8100,
+				"scheduled": "2018-07-22T01:14:00+02:00",
+				"scheduled_t": 1532214840,
+				"data": [
+					"[Kingdom Hearts Dream Drop Distance HD](https://www.speedrun.com/khhdddd#Any_NG%2B)",
+					"[RebelDragon95](https://www.twitch.tv/rebeldragon95)",
+					"PS4",
+					"Any% (Beginner NG+)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-22T03:39:00+02:00",
+				"scheduled_t": 1532223540,
+				"data": [
+					"[Warhammer 40,000: Dawn of War - Dark Crusade](https://www.speedrun.com/wh40kdowdc#All_strongholds)",
+					"[TheLaughingMax](https://www.youtube.com/user/ZeldafreakNr2/featured)",
+					"PC",
+					"All Strongholds (Necron)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H30M",
+				"length_t": 12600,
+				"scheduled": "2018-07-22T05:19:00+02:00",
+				"scheduled_t": 1532229540,
+				"data": [
+					"[Warcraft II: Tides of Darkness](https://www.speedrun.com/wc2/full_game#Orc_Campaign)",
+					"[KarmikKoala](https://www.twitch.tv/karmikkoala)",
+					"PC",
+					"Orc Campaign",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H25M",
+				"length_t": 5100,
+				"scheduled": "2018-07-22T08:59:00+02:00",
+				"scheduled_t": 1532242740,
+				"data": [
+					"[Tony Hawk\u0027s American Wasteland](https://www.speedrun.com/thaw#Story_Mode)",
+					"[English_Ben](https://www.twitch.tv/english_ben)",
+					"PC",
+					"Story Mode (Normal)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-22T10:34:00+02:00",
+				"scheduled_t": 1532248440,
+				"data": [
+					"[Tomb Raider: Anniversary](https://www.speedrun.com/tra#Any)",
+					"[Cadarev](https://www.twitch.tv/cadarev)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-22T11:14:00+02:00",
+				"scheduled_t": 1532250840,
+				"data": [
+					"[El Matador](https://www.speedrun.com/El_Matador#Any)",
+					"[catalystz](https://www.twitch.tv/catalystz) vs. [havrd](https://www.twitch.tv/havrd)",
+					"PC",
+					"Any%",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-22T11:49:00+02:00",
+				"scheduled_t": 1532252940,
+				"data": [
+					"[Max Payne](https://www.speedrun.com/Max_Payne_GBA#Any)",
+					"[tocaloni1](https://www.twitch.tv/tocaloni1)",
+					"GBP",
+					"Any%",
+					null,
+					"gba-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT23M",
+				"length_t": 1380,
+				"scheduled": "2018-07-22T12:24:00+02:00",
+				"scheduled_t": 1532255040,
+				"data": [
+					"[Beyblade VForce: Ultimate Blader Jam](https://www.speedrun.com/Beyblade_VForce_Ultimate_Blader_Jam#Any)",
+					"[lennart_underscore](https://www.twitch.tv/lennart_underscore)",
+					"GBP",
+					"Any%",
+					null,
+					"gba-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT45M",
+				"length_t": 2700,
+				"scheduled": "2018-07-22T12:57:00+02:00",
+				"scheduled_t": 1532257020,
+				"data": [
+					"[Snake Pass](https://www.speedrun.com/Snake_Pass#NG%2B_Any)",
+					"[Jetsa (aka Flotsa)](https://www.twitch.tv/flotsa)",
+					"PC",
+					"Any% (NG+)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-22T13:52:00+02:00",
+				"scheduled_t": 1532260320,
+				"data": [
+					"[Pikmin 3](https://www.speedrun.com/pikmin3#Collect_Treasures)",
+					"[360Chrism](https://www.twitch.tv/360Chrism)",
+					"Wii U",
+					"Collect Treasures (No DLC)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-22T14:42:00+02:00",
+				"scheduled_t": 1532263320,
+				"data": [
+					"[ibb \u0026 obb](https://www.speedrun.com/ibb_and_obb#Coop_any)",
+					"[emptysys](https://www.twitch.tv/emptysys), [OsZ_](https://www.twitch.tv/osz_)",
+					"PC",
+					"Any% (Co-Op)",
+					"Co-Op",
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT23M",
+				"length_t": 1380,
+				"scheduled": "2018-07-22T15:22:00+02:00",
+				"scheduled_t": 1532265720,
+				"data": [
+					"[Dust: An Elysian Tail](https://www.speedrun.com/ori_de#All_Cells)",
+					"[acridstingray3](https://www.speedrun.com/user/AcridStingray3)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT10M",
+				"length_t": 600,
+				"scheduled": "2018-07-22T15:47:00+02:00",
+				"scheduled_t": 1532267220,
+				"data": [
+					"[Solstice: Quest for the Staff of Demnos](https://www.speedrun.com/Solstice_Quest_for_the_Staff_of_Demnos#Any)",
+					"[Niss3](https://www.twitch.tv/Niss3)",
+					"NES",
+					"Any%",
+					"Intermission",
+					"4_3-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT1H26M",
+				"length_t": 5160,
+				"scheduled": "2018-07-22T15:59:00+02:00",
+				"scheduled_t": 1532267940,
+				"data": [
+					"[BattleBlock Theater](https://www.speedrun.com/BattleBlock_Theater#Any)",
+					"[Paulister](https://www.twitch.tv/paulister) vs. [HaosEdge](https://www.twitch.tv/haosedge), [SeductiveSpatula](https://www.twitch.tv/seductivespatula)",
+					"PC",
+					"Any% (NLS)",
+					"Solo vs. Co-Op",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-22T17:35:00+02:00",
+				"scheduled_t": 1532273700,
+				"data": [
+					"[Ori and the Blind Forest Definitive Edition](https://www.speedrun.com/ori_de#All_Skills)",
+					"[Jitaenow](https://www.twitch.tv/jitaenow)",
+					"PC",
+					"All Cells (No Restrictions)",
+					"SETUP GAME",
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-22T18:45:00+02:00",
+				"scheduled_t": 1532277900,
+				"data": [
+					"[GeoGuessr](https://www.youtube.com/watch?v=aSwig8zZyCg)",
+					"[havrd](https://www.twitch.tv/havrd), [Janmumrik](https://www.twitch.tv/janmumrik)",
+					"PC",
+					"Co-Op",
+					"Co-Op",
+					"geoguessr",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H40M",
+				"length_t": 6000,
+				"scheduled": "2018-07-22T19:25:00+02:00",
+				"scheduled_t": 1532280300,
+				"data": [
+					"[Halo 3](https://www.speedrun.com/halo_coop#Halo_3)",
+					"[Sorix](https://www.twitch.tv/sorixy)",
+					"XBOX 360",
+					"Legendary",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-22T21:15:00+02:00",
+				"scheduled_t": 1532286900,
+				"data": [
+					"[Daikatana](https://www.speedrun.com/Daikatana#Any_PC)",
+					"[SphereMJ](https://www.twitch.tv/spheremj)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT45M",
+				"length_t": 2700,
+				"scheduled": "2018-07-22T22:25:00+02:00",
+				"scheduled_t": 1532291100,
+				"data": [
+					"[Serious Sam: The First Encounter](https://www.speedrun.com/sstfe#Any)",
+					"[Kykystas](https://www.twitch.tv/kykystas)",
+					"PC",
+					"Any% (Tourist)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT21M",
+				"length_t": 1260,
+				"scheduled": "2018-07-22T23:20:00+02:00",
+				"scheduled_t": 1532294400,
+				"data": [
+					"[Doom: Scythe](https://www.speedrun.com/scythe#UV_Speed)",
+					"[4shockblast](https://www.twitch.tv/4shockblast)",
+					"PC",
+					"UV-Speed",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT10M",
+				"length_t": 600,
+				"scheduled": "2018-07-22T23:51:00+02:00",
+				"scheduled_t": 1532296260,
+				"data": [
+					"[Outlast](https://www.speedrun.com/Outlast#Any)",
+					"[catalystz](https://www.twitch.tv/catalystz)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT32M",
+				"length_t": 1920,
+				"scheduled": "2018-07-23T00:11:00+02:00",
+				"scheduled_t": 1532297460,
+				"data": [
+					"[Amnesia: The Dark Descent](https://www.speedrun.com/tdd#Any)",
+					"[RabzZ](https://www.twitch.tv/rabzz)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-23T00:53:00+02:00",
+				"scheduled_t": 1532299980,
+				"data": [
+					"[S.T.A.L.K.E.R.: Shadow of Chernobyl](https://www.speedrun.com/shoc#All_Main_Missions)",
+					"[antidotsrd](https://www.twitch.tv/antidotsrd)",
+					"PC",
+					"All Main Missions",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT55M",
+				"length_t": 3300,
+				"scheduled": "2018-07-23T02:33:00+02:00",
+				"scheduled_t": 1532305980,
+				"data": [
+					"[Silent Hill 3](https://www.speedrun.com/sh3#New_Game)",
+					"[Punchi](https://www.twitch.tv/Punchi)",
+					"PC",
+					"NG (Easy)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H50M",
+				"length_t": 6600,
+				"scheduled": "2018-07-23T03:38:00+02:00",
+				"scheduled_t": 1532309880,
+				"data": [
+					"[Nioh](https://www.speedrun.com/nioh#All_Main_Missions_Vanilla)",
+					"[AxelSaGo](https://www.twitch.tv/axelsago)",
+					"PS4",
+					"All Main Missions Vanilla",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H20M",
+				"length_t": 8400,
+				"scheduled": "2018-07-23T05:38:00+02:00",
+				"scheduled_t": 1532317080,
+				"data": [
+					"[Horizon Zero Dawn](https://www.speedrun.com/hzd#Any_NG%2B)",
+					"[ElkjaerTV](https://www.speedrun.com/hzd#Any_NG%2B)",
+					"PS4",
+					"Any% (NG+ Ultra Hard)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT45M",
+				"length_t": 2700,
+				"scheduled": "2018-07-23T08:08:00+02:00",
+				"scheduled_t": 1532326080,
+				"data": [
+					"[Little Nightmares](https://www.speedrun.com/Little_Nightmares#Any)",
+					"[Yajijy_](https://www.twitch.tv/yajijy_)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H20M",
+				"length_t": 4800,
+				"scheduled": "2018-07-23T09:03:00+02:00",
+				"scheduled_t": 1532329380,
+				"data": [
+					"[Q.U.B.E. 2](https://www.speedrun.com/qube2#Any_No_Numpad-Skips)",
+					"[Fatzke](https://www.twitch.tv/Fatzke) vs. [eTholon](https://www.twitch.tv/etholon)",
+					"PC",
+					"Any% (No Numpad Skips)",
+					null,
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-23T10:33:00+02:00",
+				"scheduled_t": 1532334780,
+				"data": [
+					"[Densha de D: Lightning Stage](https://www.speedrun.com/dddls#Any)",
+					"[Jugachi](https://www.twitch.tv/Jugachi) vs. [Lordmau5](https://www.twitch.tv/Lordmau5)",
+					"PC",
+					"Any%",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H50M",
+				"length_t": 13800,
+				"scheduled": "2018-07-23T11:08:00+02:00",
+				"scheduled_t": 1532336880,
+				"data": [
+					"[Need for Speed: Most Wanted (2005)](https://www.speedrun.com/nfsmw#Career_Any)",
+					"[KuruHS](https://www.twitch.tv/kuruhs)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-23T15:08:00+02:00",
+				"scheduled_t": 1532351280,
+				"data": [
+					"[Bionic Commando Rearmed](https://www.speedrun.com/bcr#any)",
+					"[ViewtifulViktor](https://www.twitch.tv/ViewtifulViktor)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-23T15:58:00+02:00",
+				"scheduled_t": 1532354280,
+				"data": [
+					"[Sonic the Hedgehog 2](https://www.speedrun.com/sonic2)",
+					"[Oldclov](https://www.twitch.tv/oldclov) vs. [linkboss](https://www.twitch.tv/linkboss)",
+					"Genesis",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT05M",
+				"length_t": 300,
+				"scheduled": "2018-07-23T16:25:00+02:00",
+				"scheduled_t": 1532355900,
+				"data": [
+					"[Rot Gut](https://www.speedrun.com/rotgut)",
+					"[Sajiki](https://www.twitch.tv/sajiki)",
+					"PC",
+					"Any%",
+					"Intermission",
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-23T16:32:00+02:00",
+				"scheduled_t": 1532356320,
+				"data": [
+					"[Mega Man 2](http://megamanleaderboards.net/index.php?game=2)",
+					"[COOLKID](https://www.twitch.tv/coolkid) vs. [EndySWE](https://www.twitch.tv/endyswe)",
+					"NES",
+					"Any% (Difficult)",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-23T17:17:00+02:00",
+				"scheduled_t": 1532359020,
+				"data": [
+					"[Mega Man 5](https://megamanleaderboards.net/index.php?game=5)",
+					"[Jokaah](https://www.twitch.tv/jokaah)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT17M",
+				"length_t": 1020,
+				"scheduled": "2018-07-23T18:07:00+02:00",
+				"scheduled_t": 1532362020,
+				"data": [
+					"[Battletoads](https://www.speedrun.com/battletoads_nes#Any_No_WW)",
+					"[TheMexicanRunner](https://www.twitch.tv/TheMexicanRunner)",
+					"NES",
+					"Any% (No Wrong Warp)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT15M",
+				"length_t": 900,
+				"scheduled": "2018-07-23T18:34:00+02:00",
+				"scheduled_t": 1532363640,
+				"data": [
+					"[Castlevania](https://www.speedrun.com/cv1#Any)",
+					"[EndySWE](https://www.twitch.tv/endyswe)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT44M",
+				"length_t": 2640,
+				"scheduled": "2018-07-23T18:59:00+02:00",
+				"scheduled_t": 1532365140,
+				"data": [
+					"[Castlevania II: Simon\u0027s Quest](https://www.speedrun.com/cv2sq#Any)",
+					"[Burb__](https://www.twitch.tv/Burb__)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-23T19:53:00+02:00",
+				"scheduled_t": 1532368380,
+				"data": [
+					"[Firestriker](https://www.speedrun.com/Firestriker#1P_Any)",
+					"[BroEdgeMan](https://www.twitch.tv/broedgeman) vs. [joker_of_god](https://www.twitch.tv/joker_of_god)",
+					"SNES",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT05M",
+				"length_t": 300,
+				"scheduled": "2018-07-23T20:25:00+02:00",
+				"scheduled_t": 1532370300,
+				"data": [
+					"[Kung Fu](https://www.speedrun.com/Kung_Fu#Any_Game_A)",
+					"[Frippen87](https://www.twitch.tv/frippen87)",
+					"NES",
+					"Any% (Game A)",
+					"Intermission",
+					"4_3-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT1H50M",
+				"length_t": 6600,
+				"scheduled": "2018-07-23T20:32:00+02:00",
+				"scheduled_t": 1532370720,
+				"data": [
+					"[The Binding of Isaac: Afterbirth+](https://www.speedrun.com/afterbirthplus#Racing%2B)",
+					"[Shigan_](https://www.twitch.tv/ryugu_no_shigan)  vs. [Ceehe](https://www.twitch.tv/ceehe) vs. [GamonymousRC](https://www.twitch.tv/gamonymousrc)",
+					"PC",
+					"Racing+ Season 3",
+					"Race",
+					"16_9-3p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-23T22:32:00+02:00",
+				"scheduled_t": 1532377920,
+				"data": [
+					"[Transistor](https://www.speedrun.com/transistor#Any)",
+					"[Cadarev](https://www.twitch.tv/cadarev)",
+					"PC",
+					"Any%",
+					"SETUP GAME",
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H40M",
+				"length_t": 6000,
+				"scheduled": "2018-07-23T23:42:00+02:00",
+				"scheduled_t": 1532382120,
+				"data": [
+					"[Undertale](https://www.speedrun.com/undertale#True_Pacifist)",
+					"[Firepaw](https://www.twitch.tv/firepawlz)",
+					"PC",
+					"True Pacifist",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H45M",
+				"length_t": 6300,
+				"scheduled": "2018-07-24T01:32:00+02:00",
+				"scheduled_t": 1532388720,
+				"data": [
+					"[South Park: The Stick of Truth](https://www.speedrun.com/sp_sot#Any_Mage)",
+					"[HardcoreYork](https://www.twitch.tv/HardcoreYork)",
+					"PC",
+					"Any% (Mage Current Patch)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H50M",
+				"length_t": 6600,
+				"scheduled": "2018-07-24T03:27:00+02:00",
+				"scheduled_t": 1532395620,
+				"data": [
+					"[Harry Potter and the Chamber of Secrets](https://www.speedrun.com/hp2pc#100)",
+					"[Rasschla](https://www.twitch.tv/rasschlalive)",
+					"PC",
+					"100%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT4H",
+				"length_t": 14400,
+				"scheduled": "2018-07-24T05:27:00+02:00",
+				"scheduled_t": 1532402820,
+				"data": [
+					"[The Legend of Zelda: Twilight Princess HD](https://www.speedrun.com/tphd#Any)",
+					"[Lolicry](https://www.twitch.tv/lolicry)",
+					"Wii U",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-24T09:37:00+02:00",
+				"scheduled_t": 1532417820,
+				"data": [
+					"[Okami](https://www.speedrun.com/Okami#NG%2B_Any)",
+					"[Kinnin11](https://www.twitch.tv/kinnin11)",
+					"PS3",
+					"Any% (NG+)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H40M",
+				"length_t": 6000,
+				"scheduled": "2018-07-24T11:17:00+02:00",
+				"scheduled_t": 1532423820,
+				"data": [
+					"[Dissidia: Final Fantasy](https://www.speedrun.com/dff#Any)",
+					"[Leonis07](https://www.twitch.tv/Leonis07)",
+					"PSP",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H10M",
+				"length_t": 4200,
+				"scheduled": "2018-07-24T13:07:00+02:00",
+				"scheduled_t": 1532430420,
+				"data": [
+					"[Jak and Daxter: The Precursor Legacy](https://www.speedrun.com/jak1#Any)",
+					"[SixRockFire](https://www.twitch.tv/sixrockfire)",
+					"PS2",
+					"Any% (No LTS (One-handed))",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-24T14:27:00+02:00",
+				"scheduled_t": 1532435220,
+				"data": [
+					"[Prince of Persia: Warrior Within](https://www.speedrun.com/pop_ww#Any1)",
+					"[catalystz](https://www.twitch.tv/catalystz)",
+					"PC",
+					"Any% (Normal)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-24T15:02:00+02:00",
+				"scheduled_t": 1532437320,
+				"data": [
+					"[Darksiders](https://www.speedrun.com/Darksiders#Any)",
+					"[henyK](https://www.twitch.tv/henyK)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-24T16:42:00+02:00",
+				"scheduled_t": 1532443320,
+				"data": [
+					"[NieR: Automata](https://www.speedrun.com/NieR_Automata#A)",
+					"[Kanaris](https://www.twitch.tv/Kanaris)",
+					"PC",
+					"Ending [A]",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H20M",
+				"length_t": 8400,
+				"scheduled": "2018-07-24T18:22:00+02:00",
+				"scheduled_t": 1532449320,
+				"data": [
+					"[Dark Souls II](https://www.speedrun.com/darksouls2#Reverse_Boss_Order)",
+					"[Noobest](https://www.twitch.tv/noobest) vs. [Stennis](https://www.twitch.tv/stennis)",
+					"PC",
+					"Reverse Boss Order",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H55M",
+				"length_t": 6900,
+				"scheduled": "2018-07-24T20:52:00+02:00",
+				"scheduled_t": 1532458320,
+				"data": [
+					"[Shadow of the Colossus Remaster](https://www.speedrun.com/sotc_2018#Any)",
+					"[Elajjaz](https://www.twitch.tv/Elajjaz)",
+					"PS4",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H",
+				"length_t": 7200,
+				"scheduled": "2018-07-24T22:57:00+02:00",
+				"scheduled_t": 1532465820,
+				"data": [
+					"[Diablo II: Lord of Destruction](https://www.speedrun.com/d2lod#Any)",
+					"[Ellieceraptor](https://www.twitch.tv/ellieceraptor)",
+					"PC",
+					"Any% (Normal)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-25T01:07:00+02:00",
+				"scheduled_t": 1532473620,
+				"data": [
+					"[Unreal](https://www.speedrun.com/unreal1)",
+					"[Tezur0](https://www.twitch.tv/Tezur0)",
+					"PC",
+					"Any% (Easy)",
+					"SETUP GAME",
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT50M",
+				"length_t": 3000,
+				"scheduled": "2018-07-25T02:17:00+02:00",
+				"scheduled_t": 1532477820,
+				"data": [
+					"[Deus Ex](https://www.speedrun.com/dx)",
+					"[Heinki](https://www.twitch.tv/heinki)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H40M",
+				"length_t": 6000,
+				"scheduled": "2018-07-25T03:17:00+02:00",
+				"scheduled_t": 1532481420,
+				"data": [
+					"[Fallout 3](https://www.speedrun.com/Fallout_3#All_Quests1)",
+					"[NoobSalmon](https://www.twitch.tv/noobsalmon)",
+					"PC",
+					"All Quests",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H15M",
+				"length_t": 11700,
+				"scheduled": "2018-07-25T05:07:00+02:00",
+				"scheduled_t": 1532488020,
+				"data": [
+					"[Yakuza 6: The Song of Life](https://www.speedrun.com/Yakuza_6_The_Song_of_Life)",
+					"[FroobMcGuffin](https://www.twitch.tv/froobmcguffin)",
+					"PS4",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H",
+				"length_t": 7200,
+				"scheduled": "2018-07-25T08:32:00+02:00",
+				"scheduled_t": 1532500320,
+				"data": [
+					"[LEGO Harry Potter: Years 5-7](https://www.speedrun.com/lhp5-7#Replay_Story)",
+					"[Ellaapiie](https://www.twitch.tv/ellaapiie)",
+					"PC",
+					"Any% (Replay Story)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT4H",
+				"length_t": 14400,
+				"scheduled": "2018-07-25T10:42:00+02:00",
+				"scheduled_t": 1532508120,
+				"data": [
+					"[Grand Theft Auto IV](https://www.speedrun.com/gtaiv#Any)",
+					"[KyleDoeSit](https://www.twitch.tv/KyleDoesIt)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-25T14:52:00+02:00",
+				"scheduled_t": 1532523120,
+				"data": [
+					"[Grand Theft Auto 2](https://www.speedrun.com/gta2/full_game)",
+					"[Tezur0](https://www.twitch.tv/Tezur0)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT5H25M",
+				"length_t": 19500,
+				"scheduled": "2018-07-25T15:37:00+02:00",
+				"scheduled_t": 1532525820,
+				"data": [
+					"[Final Fantasy IX](https://www.speedrun.com/ff9)",
+					"[Metako](https://www.twitch.tv/Metako)",
+					"PS2",
+					"Any% Part 1",
+					"Part 2 on Stream 2",
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-25T21:12:00+02:00",
+				"scheduled_t": 1532545920,
+				"data": [
+					"[Awful Games](https://youtu.be/N27QV7_Z-j4?t=16)",
+					"[havrd](https://www.twitch.tv/havrd), [Janmumrik](https://www.twitch.tv/janmumrik)",
+					"PC",
+					"Any%",
+					"Relay",
+					null,
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-25T21:52:00+02:00",
+				"scheduled_t": 1532548320,
+				"data": [
+					"[Arabian Nights](https://www.speedrun.com/Arabian_Nights#Any_with_dialogue)",
+					"[Goost91](https://www.twitch.tv/goost91)",
+					"PC",
+					"Any% (With Dialogue)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H05M",
+				"length_t": 3900,
+				"scheduled": "2018-07-25T22:42:00+02:00",
+				"scheduled_t": 1532551320,
+				"data": [
+					"[Prince of Persia: The Sands of Time](https://www.speedrun.com/pop_sot)",
+					"[tocaloni1](https://www.twitch.tv/tocaloni1)",
+					"PC",
+					"Any% (Zipless) Segmented Reveal",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT23M",
+				"length_t": 1380,
+				"scheduled": "2018-07-25T23:57:00+02:00",
+				"scheduled_t": 1532555820,
+				"data": [
+					"[SUPERHOT](https://www.speedrun.com/SUPERHOT)",
+					"[Ellieceraptor](https://www.twitch.tv/ellieceraptor) vs. [Jackintoshh](https://www.twitch.tv/Jackintoshh)",
+					"PC",
+					"Any%",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H30M",
+				"length_t": 5400,
+				"scheduled": "2018-07-26T00:30:00+02:00",
+				"scheduled_t": 1532557800,
+				"data": [
+					"[I Wanna Kill The Kamilia 2](https://www.speedrun.com/iwktkamilia2)",
+					"[BBF_](https://www.twitch.tv/bbf_)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-26T02:10:00+02:00",
+				"scheduled_t": 1532563800,
+				"data": [
+					"[Family Guy: Back to the Multiverse](https://www.speedrun.com/Family_Guy_Back_to_the_Multiverse#Co-Op_Any_NG%2B)",
+					"[Geurge](https://www.twitch.tv/geurge), [Hennejoe](https://www.twitch.tv/hennejoe)",
+					"PC",
+					"Any% (NG+ Co-Op)",
+					"SETUP GAME",
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT32M",
+				"length_t": 1920,
+				"scheduled": "2018-07-26T03:20:00+02:00",
+				"scheduled_t": 1532568000,
+				"data": [
+					"[Lara Croft and the Guardian of Light](https://www.speedrun.com/lcgol)",
+					"[RandomPinkBunny](https://www.twitch.tv/randompinkbunny) vs. [SeductiveSpatula](https://www.twitch.tv/seductivespatula)",
+					"PC",
+					"Any% (NG+)",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H20M",
+				"length_t": 4800,
+				"scheduled": "2018-07-26T04:02:00+02:00",
+				"scheduled_t": 1532570520,
+				"data": [
+					"[Tomb Raider III: Adventures of Lara Croft](https://www.speedrun.com/tr3)",
+					"[eidgod](https://www.twitch.tv/eidgod)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-26T05:32:00+02:00",
+				"scheduled_t": 1532575920,
+				"data": [
+					"[Tomb Raider: The Angel of Darkness](https://www.speedrun.com/traod)",
+					"[Cadarev](https://www.twitch.tv/cadarev)",
+					"PC",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H50M",
+				"length_t": 6600,
+				"scheduled": "2018-07-26T06:12:00+02:00",
+				"scheduled_t": 1532578320,
+				"data": [
+					"[BioShock Infinite](https://www.speedrun.com/bsi)",
+					"[henyK](https://www.twitch.tv/henyK)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT53M",
+				"length_t": 3180,
+				"scheduled": "2018-07-26T08:12:00+02:00",
+				"scheduled_t": 1532585520,
+				"data": [
+					"[WarioWare: Smooth Moves](https://www.speedrun.com/wwsm)",
+					"[ChriSoofy](https://www.twitch.tv/chrisoofy) vs. [Ellaapiie](https://www.twitch.tv/ellaapiie)",
+					"Wii",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H10M",
+				"length_t": 4200,
+				"scheduled": "2018-07-26T09:15:00+02:00",
+				"scheduled_t": 1532589300,
+				"data": [
+					"[Jak II](https://www.speedrun.com/jak2)",
+					"[Boomer](https://www.twitch.tv/BoomerStreams)",
+					"PS3",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H20M",
+				"length_t": 12000,
+				"scheduled": "2018-07-26T10:35:00+02:00",
+				"scheduled_t": 1532594100,
+				"data": [
+					"[The Legend of Zelda: A Link Between Worlds](https://www.speedrun.com/albw#100)",
+					"[Herreteman](https://www.twitch.tv/herreteman)",
+					"3DS",
+					"100%",
+					null,
+					"3ds-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H15M",
+				"length_t": 4500,
+				"scheduled": "2018-07-26T14:05:00+02:00",
+				"scheduled_t": 1532606700,
+				"data": [
+					"[Bastion](https://www.speedrun.com/bastion#All_Dreams_and_Challenges)",
+					"[acridstingray3](https://www.speedrun.com/user/AcridStingray3) vs. [HaosEdge](https://www.twitch.tv/haosedge) vs. [Kazzadan](https://www.twitch.tv/kazzadan) vs. [Leonmachar](https://www.twitch.tv/leonmachar)",
+					"PC",
+					"Dreams and Challenges",
+					"Race",
+					"16_9-4p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-26T15:30:00+02:00",
+				"scheduled_t": 1532611800,
+				"data": [
+					"[Light Fall](https://www.speedrun.com/Light_Fall)",
+					"[Dedew](https://www.twitch.tv/LostDedew)",
+					"PC",
+					"Any% (Normal)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-26T16:15:00+02:00",
+				"scheduled_t": 1532614500,
+				"data": [
+					"[Run Invalid](https://www.youtube.com/watch?v=icPanNGjXRk)",
+					"[COBRAS vs. HAWKS](https://youtu.be/yVjysVTHF0o)",
+					"PC",
+					"Any%",
+					"Routing Competition",
+					null,
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT50M",
+				"length_t": 3000,
+				"scheduled": "2018-07-26T16:55:00+02:00",
+				"scheduled_t": 1532616900,
+				"data": [
+					"[Celeste](https://www.speedrun.com/Celeste)",
+					"[Punchi](https://www.twitch.tv/Punchi)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT07M",
+				"length_t": 420,
+				"scheduled": "2018-07-26T17:47:00+02:00",
+				"scheduled_t": 1532620020,
+				"data": [
+					"[Donkey Kong 5: The Journey of Over Time and Space](https://www.speedrun.com/dk5)",
+					"[CDRomatron](https://www.twitch.tv/CDRomatron)",
+					"GBP",
+					"Any%",
+					"Intermission",
+					"gb-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT13M",
+				"length_t": 780,
+				"scheduled": "2018-07-26T17:56:00+02:00",
+				"scheduled_t": 1532620560,
+				"data": [
+					"[VVVVVV](https://www.speedrun.com/VVVVVV)",
+					"[mohoc](https://www.twitch.tv/mohoc7) vs. [tzann](https://www.twitch.tv/tzann) vs. [lennart_underscore](https://www.twitch.tv/lennart_underscore)",
+					"PC",
+					"Any% (No Telejumping)",
+					"Race",
+					"4_3-3p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H10M",
+				"length_t": 4200,
+				"scheduled": "2018-07-26T18:19:00+02:00",
+				"scheduled_t": 1532621940,
+				"data": [
+					"[I Wanna Be The Boshy](https://www.speedrun.com/iwbtboshy#Any_No_WW_DBO)",
+					"[BBF_](https://www.twitch.tv/bbf_)",
+					"PC",
+					"Any% (Rage-Mode)",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT10M",
+				"length_t": 600,
+				"scheduled": "2018-07-26T19:31:00+02:00",
+				"scheduled_t": 1532626260,
+				"data": [
+					"[Nitronic Rush](https://www.speedrun.com/nrush)",
+					"[Lordmau5](https://www.twitch.tv/Lordmau5)",
+					"PC",
+					"Story Mode",
+					"Intermission",
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT45M",
+				"length_t": 2700,
+				"scheduled": "2018-07-26T19:43:00+02:00",
+				"scheduled_t": 1532626980,
+				"data": [
+					"[Tetris The Grand Master](https://youtu.be/r26GbLguyU0)",
+					"[TC_Qlex](https://www.twitch.tv/tc_qlex)",
+					"Arcade",
+					"Exhibition",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-26T20:38:00+02:00",
+				"scheduled_t": 1532630280,
+				"data": [
+					"[Tekken 7](https://www.speedrun.com/tekken7)",
+					"[Shirdel](https://www.twitch.tv/shirdel)",
+					"PC",
+					"Any% (3 Stars)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT25M",
+				"length_t": 1500,
+				"scheduled": "2018-07-26T21:23:00+02:00",
+				"scheduled_t": 1532632980,
+				"data": [
+					"[Mike Tyson\u0027s Punch-Out!!](https://www.speedrun.com/mtpo)",
+					"[sinister1](https://www.twitch.tv/sinister1)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-26T21:58:00+02:00",
+				"scheduled_t": 1532635080,
+				"data": [
+					"[Adventure Island II](https://www.speedrun.com/ai2)",
+					"[TheMexicanRunner](https://www.twitch.tv/TheMexicanRunner)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT15M",
+				"length_t": 900,
+				"scheduled": "2018-07-26T22:38:00+02:00",
+				"scheduled_t": 1532637480,
+				"data": [
+					"[Batman: The Video Game](https://www.speedrun.com/Batman_The_Video_Game_NES)",
+					"[Dxtr](https://www.twitch.tv/dxtr) vs. [EndySWE](https://www.twitch.tv/endyswe)",
+					"NES",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT08M",
+				"length_t": 480,
+				"scheduled": "2018-07-26T23:03:00+02:00",
+				"scheduled_t": 1532638980,
+				"data": [
+					"[Strider](https://www.speedrun.com/stridernes)",
+					"[COOLKID](https://www.twitch.tv/coolkid)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT50M",
+				"length_t": 3000,
+				"scheduled": "2018-07-26T23:21:00+02:00",
+				"scheduled_t": 1532640060,
+				"data": [
+					"[Demon\u0027s Crest](https://www.speedrun.com/Demons_Crest)",
+					"[BroedgeMan](https://www.twitch.tv/broedgeman)",
+					"SNES",
+					"100%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT55M",
+				"length_t": 3300,
+				"scheduled": "2018-07-27T00:21:00+02:00",
+				"scheduled_t": 1532643660,
+				"data": [
+					"[Ratchet: Deadlocked](https://www.speedrun.com/rac4)",
+					"[Mucke1Man](https://www.twitch.tv/mucke1man)",
+					"PS3",
+					"Any% (NG+ no EGS)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT38M",
+				"length_t": 2280,
+				"scheduled": "2018-07-27T01:26:00+02:00",
+				"scheduled_t": 1532647560,
+				"data": [
+					"[Dishonored 2](https://www.speedrun.com/Dishonored_2#Any)",
+					"[Scopii](https://www.speedrun.com/user/scopii)",
+					"PC",
+					"Corvo Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT18M",
+				"length_t": 1080,
+				"scheduled": "2018-07-27T02:06:00+02:00",
+				"scheduled_t": 1532649960,
+				"data": [
+					"[Dishonored: Death of the Outsider](https://www.speedrun.com/dishonored_doto)",
+					"[Scopii](https://www.speedrun.com/user/scopii)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-27T02:34:00+02:00",
+				"scheduled_t": 1532651640,
+				"data": [
+					"[Fallout 4](https://www.speedrun.com/Fallout_4)",
+					"[Brongle](https://www.speedrun.com/user/brongle)",
+					"PC",
+					"Any%",
+					"SETUP GAME",
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT20M",
+				"length_t": 1200,
+				"scheduled": "2018-07-27T03:44:00+02:00",
+				"scheduled_t": 1532655840,
+				"data": [
+					"[The Witness](https://www.speedrun.com/thewitness)",
+					"[tzann](https://www.twitch.tv/tzann)",
+					"PC",
+					"Any% (Current Patch)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H15M",
+				"length_t": 11700,
+				"scheduled": "2018-07-27T04:14:00+02:00",
+				"scheduled_t": 1532657640,
+				"data": [
+					"[Pok\u00e9mon Platinum](https://www.speedrun.com/pkmnplat/full_game#Any)",
+					"[Retrotato](https://www.twitch.tv/Retrotato)",
+					"DS",
+					"Any%",
+					null,
+					"ds-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT40M",
+				"length_t": 2400,
+				"scheduled": "2018-07-27T07:39:00+02:00",
+				"scheduled_t": 1532669940,
+				"data": [
+					"[Solar Jetman](https://www.speedrun.com/Solar_Jetman)",
+					"[TheMotherBrain86](https://www.twitch.tv/TheMotherBrain86)",
+					"NES",
+					"Any%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT12M",
+				"length_t": 720,
+				"scheduled": "2018-07-27T08:29:00+02:00",
+				"scheduled_t": 1532672940,
+				"data": [
+					"[Taz-Mania](https://www.speedrun.com/taz_mania_sms)",
+					"[COOLKID](https://www.twitch.tv/coolkid) vs. [KrazyRasmus](https://www.twitch.tv/krazyrasmus)",
+					"Master System",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT12M",
+				"length_t": 720,
+				"scheduled": "2018-07-27T08:51:00+02:00",
+				"scheduled_t": 1532674260,
+				"data": [
+					"[Yume Penguin Monogatari](https://www.speedrun.com/ypm)",
+					"[CartinaCow](https://www.twitch.tv/cartinacow) vs. [EndySWE](https://www.twitch.tv/endyswe)",
+					"NES",
+					"Any%",
+					"Race",
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H25M",
+				"length_t": 5100,
+				"scheduled": "2018-07-27T09:13:00+02:00",
+				"scheduled_t": 1532675580,
+				"data": [
+					"[Super Metroid](https://www.speedrun.com/supermetroid#100)",
+					"[Enmet](https://www.twitch.tv/enmet)",
+					"SNES",
+					"100%",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H10M",
+				"length_t": 7800,
+				"scheduled": "2018-07-27T10:48:00+02:00",
+				"scheduled_t": 1532681280,
+				"data": [
+					"[Kirby Super Star Ultra](https://www.speedrun.com/kssu)",
+					"[Kinnin11](https://www.twitch.tv/kinnin11)",
+					"DS",
+					"100%",
+					null,
+					"ds-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H",
+				"length_t": 7200,
+				"scheduled": "2018-07-27T13:08:00+02:00",
+				"scheduled_t": 1532689680,
+				"data": [
+					"[Super Mario 64](https://www.speedrun.com/sm64#70_Star)",
+					"[Fuzzyness \u0026 Friends](https://youtu.be/1wf0HRUYspM)",
+					"Wii",
+					"70 Star Relay Race",
+					null,
+					"4_3-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT50M",
+				"length_t": 3000,
+				"scheduled": "2018-07-27T15:18:00+02:00",
+				"scheduled_t": 1532697480,
+				"data": [
+					"[Mirror\u0027s Edge](https://www.speedrun.com/me#1001)",
+					"[Phillotrax](https://www.twitch.tv/phillotrax)",
+					"PC",
+					"100%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H35M",
+				"length_t": 5700,
+				"scheduled": "2018-07-27T16:18:00+02:00",
+				"scheduled_t": 1532701080,
+				"data": [
+					"[Dark Souls](https://www.speedrun.com/darksouls#All_Bosses)",
+					"[Kahmul78](https://www.twitch.tv/kahmul78)",
+					"PC",
+					"All Bosses",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": {"setup": "2m"}
+			},
+			{
+				"length": "PT20M",
+				"length_t": 1200,
+				"scheduled": "2018-07-27T17:55:00+02:00",
+				"scheduled_t": 1532706900,
+				"data": [
+					"[Dark Souls](https://www.speedrun.com/Dark_Souls)",
+					"[Kahmul78](https://www.twitch.tv/kahmul78)",
+					"PC",
+					"Glitch Exhibition",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-27T18:25:00+02:00",
+				"scheduled_t": 1532708700,
+				"data": [
+					"[Dark Souls (Remastered)](https://www.speedrun.com/darksoulsremastered)",
+					"[SayviTV](https://www.twitch.tv/SayviTV) vs. [Elajjaz](https://www.twitch.tv/Elajjaz)",
+					"PC",
+					"Any%",
+					"Race",
+					"16_9-2p",
+					"Sponsored"
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-27T19:35:00+02:00",
+				"scheduled_t": 1532712900,
+				"data": [
+					"[Star Wars Jedi Knight: Jedi Academy](https://www.speedrun.com/jka)",
+					"[praskOo_](https://www.twitch.tv/praskOo_) vs. [Savusukka](https://www.twitch.tv/savusukka) vs. [AerO__](https://www.twitch.tv/aero__)",
+					"PC",
+					"Any%",
+					"Race",
+					"4_3-3p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT47M",
+				"length_t": 2820,
+				"scheduled": "2018-07-27T20:20:00+02:00",
+				"scheduled_t": 1532715600,
+				"data": [
+					"[Hitman: Blood Money](https://www.speedrun.com/hitmanbloodmoney)",
+					"[TheKotti](https://www.twitch.tv/thekotti)",
+					"PC",
+					"Silent Assassin",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT20M",
+				"length_t": 1200,
+				"scheduled": "2018-07-27T21:17:00+02:00",
+				"scheduled_t": 1532719020,
+				"data": [
+					"[Quake](https://www.speedrun.com/Quake)",
+					"[brainfluid](https://www.twitch.tv/brainfluid) vs. [praskOo_](https://www.twitch.tv/praskOo_)",
+					"PC",
+					"Any%",
+					"Race",
+					"16_9-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-27T21:47:00+02:00",
+				"scheduled_t": 1532720820,
+				"data": [
+					"[Half-Life](https://www.speedrun.com/hl1)",
+					"[Maxam1337](https://www.twitch.tv/maxam1337)",
+					"PC",
+					"Any% Scriptless",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT50M",
+				"length_t": 3000,
+				"scheduled": "2018-07-27T22:32:00+02:00",
+				"scheduled_t": 1532723520,
+				"data": [
+					"[Deus Ex: Human Revolution](https://www.speedrun.com/dxhr)",
+					"[Heinki](https://www.twitch.tv/heinki)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT20M",
+				"length_t": 1200,
+				"scheduled": "2018-07-27T23:32:00+02:00",
+				"scheduled_t": 1532727120,
+				"data": [
+					"[Prey (2017)](https://www.speedrun.com/prey2017)",
+					"[henyK](https://www.twitch.tv/henyK)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H",
+				"length_t": 7200,
+				"scheduled": "2018-07-28T00:02:00+02:00",
+				"scheduled_t": 1532728920,
+				"data": [
+					"[Dying Light](https://www.speedrun.com/dyinglight)",
+					"[WolfE87](https://www.twitch.tv/wolfe87)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT15M",
+				"length_t": 900,
+				"scheduled": "2018-07-28T02:12:00+02:00",
+				"scheduled_t": 1532736720,
+				"data": [
+					"[Minecraft: Java Edition](https://www.speedrun.com/mc#Any_Glitchless)",
+					"[SpoonTy](https://www.youtube.com/channel/UCQWtP2GWSxy21J6Y8eDFW9Q)",
+					"PC",
+					"Any% (Glitchless Set Seed)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H40M",
+				"length_t": 6000,
+				"scheduled": "2018-07-28T02:37:00+02:00",
+				"scheduled_t": 1532738220,
+				"data": [
+					"[Hearthstone: League of Explorers](https://www.speedrun.com/leaofexplo#Heroic)",
+					"[srd_27](https://www.twitch.tv/srd_27)",
+					"PC",
+					"Heroic",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H05M",
+				"length_t": 3900,
+				"scheduled": "2018-07-28T04:27:00+02:00",
+				"scheduled_t": 1532744820,
+				"data": [
+					"[Sonic Forces](https://www.speedrun.com/sonicforces)",
+					"[Akaraien](https://www.twitch.tv/akaraien)",
+					"PC",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H05M",
+				"length_t": 3900,
+				"scheduled": "2018-07-28T05:42:00+02:00",
+				"scheduled_t": 1532749320,
+				"data": [
+					"[Sonic Mania](https://www.speedrun.com/sonicmania)",
+					"[Argick](https://www.twitch.tv/argick)",
+					"PC",
+					"Sonic \u0026 Tails (All Emeralds)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT35M",
+				"length_t": 2100,
+				"scheduled": "2018-07-28T06:57:00+02:00",
+				"scheduled_t": 1532753820,
+				"data": [
+					"[The Legend of Spyro: The Eternal Night](https://www.speedrun.com/tlos2gba)",
+					"[CDRomatron](https://www.twitch.tv/CDRomatron) vs. [LoveBot](https://www.twitch.tv/LoveBot)",
+					"GBA",
+					"Any%",
+					"Race",
+					"gba-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H",
+				"length_t": 3600,
+				"scheduled": "2018-07-28T07:42:00+02:00",
+				"scheduled_t": 1532756520,
+				"data": [
+					"[Kingdom Hearts Birth by Sleep Final Mix HD](https://www.speedrun.com/khbbsfmhd)",
+					"[RebelDragon95](https://www.twitch.tv/rebeldragon95)",
+					"PS4",
+					"Any% (Terra Beginner)",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT30M",
+				"length_t": 1800,
+				"scheduled": "2018-07-28T08:52:00+02:00",
+				"scheduled_t": 1532760720,
+				"data": [
+					"[Kirby \u0026 The Amazing Mirror](https://www.speedrun.com/katam#Any)",
+					"[Kinnin11](https://www.twitch.tv/kinnin11), [Sniperwave](https://www.twitch.tv/Sniperwave)",
+					"GBP",
+					"Any% (Co-Op)",
+					"Co-Op",
+					"gba-2p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT2H10M",
+				"length_t": 7800,
+				"scheduled": "2018-07-28T09:32:00+02:00",
+				"scheduled_t": 1532763120,
+				"data": [
+					"[The Legend of Zelda: Ocarina of Time](https://www.speedrun.com/oot#MST)",
+					"[Amateseru](https://www.twitch.tv/amateseru)",
+					"Wii",
+					"MST",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H15M",
+				"length_t": 4500,
+				"scheduled": "2018-07-28T11:52:00+02:00",
+				"scheduled_t": 1532771520,
+				"data": [
+					"[The Legend of Zelda: The Wind Waker HD](https://www.speedrun.com/twwhd)",
+					"[Linkus7](https://www.twitch.tv/linkus7)",
+					"Wii U",
+					"Any%",
+					null,
+					"16_9-1p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT1H20M",
+				"length_t": 4800,
+				"scheduled": "2018-07-28T13:17:00+02:00",
+				"scheduled_t": 1532776620,
+				"data": [
+					"[Super Mario Odyssey](https://www.speedrun.com/smo)",
+					"[360Chrism](https://www.twitch.tv/360Chrism) vs. [Isaia](https://www.twitch.tv/Isaia) vs. [Yoshim_](https://www.twitch.tv/yoshim_)",
+					"Switch",
+					"Any%",
+					"Race",
+					"16_9-3p",
+					null
+				],
+				"options": null
+			},
+			{
+				"length": "PT3H10M",
+				"length_t": 11400,
+				"scheduled": "2018-07-28T14:47:00+02:00",
+				"scheduled_t": 1532782020,
+				"data": [
+					"[Grand Theft Auto III](https://www.speedrun.com/gtaiii#All_Missions)",
+					"[UltimaOmega07](https://www.twitch.tv/ultimaomega07)",
+					"PC",
+					"All Missions",
+					null,
+					"4_3-1p",
+					null
+				],
+				"options": {"setup": "12m"}
+			},
+			{
+				"length": "PT3H",
+				"length_t": 10800,
+				"scheduled": "2018-07-28T18:09:00+02:00",
+				"scheduled_t": 1532794140,
+				"data": [
+					"[Best of NES - BIG10](https://docs.google.com/document/d/1tNJ6hPYdWeveGRxS2QAeQoDUqZ2rsLjyk0pVz_hA-bs/edit#heading=h.q4cn8bbj40in)",
+					"[InfestedRiche](https://www.twitch.tv/InfestedRiche) vs. [COOLKID](https://www.twitch.tv/coolkid) vs. [Yogidamonk](https://www.twitch.tv/yogidamonk) vs. [JkL87](https://www.twitch.tv/JkL87)",
+					"NES",
+					"Various",
+					null,
+					"4_3-4p",
+					null
+				],
+				"options": null
+			}
+		],
+		"links": [
+			{
+				"rel": "self",
+				"uri":
+					"https://horaro.org/-/api/v1/schedules/2211jgbb8x43m97a13"
+			},
+			{
+				"rel": "event",
+				"uri": "https://horaro.org/-/api/v1/events/7a50r46ezxb6yxb41b"
+			},
+			{
+				"rel": "ticker",
+				"uri":
+					"https://horaro.org/-/api/v1/schedules/2211jgbb8x43m97a13/ticker"
+			}
+		]
+	}
+}
