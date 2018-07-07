@@ -1,5 +1,6 @@
 .serverless
-*.env*
 node_modules
 *.log
 build
+config/*
+!config/template.json
