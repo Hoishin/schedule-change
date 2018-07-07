@@ -1,7 +1,8 @@
 import axios from 'axios';
-import {Config} from '../types';
+import { Config } from '../types';
 
-const config: Config = require(`../../config/${process.env.SLS_STAGE}.json`);
+const stage = process.env.SLS_STAGE || 'development';
+const config: Config = require(`../../config/${stage}.json`);
 const discordConfig = config.discord;
 
 export class DiscordClient {
@@ -16,7 +17,11 @@ export class DiscordClient {
 	}
 
 	public async system(content: string) {
-		await this.post(discordConfig.system, this.eventName, content);
+		await this.post(
+			discordConfig.system,
+			this.eventName + ' ' + stage,
+			content
+		);
 	}
 
 	private async post(url: string, username: string, content: string) {
