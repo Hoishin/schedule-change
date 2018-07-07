@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Config } from '../types';
+import {Config} from '../types';
 
 const stage = process.env.SLS_STAGE || 'development';
 const config: Config = require(`../../config/${stage}.json`);
