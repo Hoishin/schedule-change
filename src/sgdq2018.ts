@@ -95,7 +95,7 @@ export default () => {
 	scheduleChange(
 		'SGDQ2018',
 		url,
-		(data: Run[]) => ({schedule: data}),
+		(data: Run[]) => ({schedule: data, data: null}),
 		(before, after) => {
 			const result = [...takeFieldDiff(before.schedule, after.schedule)];
 			if (result.length === 0) {

@@ -61,5 +61,5 @@ export const scheduleChange = async <O, I, D>(
 
 interface ScheduleData<I, D> {
 	schedule: I[];
-	data?: D;
+	data: D;
 }
