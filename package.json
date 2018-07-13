@@ -12,12 +12,28 @@
 		"@types/dotenv": "^4.0.3",
 		"@types/lodash": "^4.14.109",
 		"@types/node": "^10.3.0",
+		"ava": "^0.25.0",
+		"nyc": "^12.0.2",
 		"prettier": "^1.13.4",
+		"ts-node": "^7.0.0",
+		"tslint": "^5.10.0",
+		"tslint-xo": "^0.8.0",
 		"typescript": "^2.9.1"
 	},
 	"scripts": {
 		"build": "tsc",
 		"serve": "tsc -w",
-		"format": "prettier \"src/**/*.ts\" --write"
+		"format": "prettier \"src/**/*.ts\" --write",
+		"tslint": "tslint --format stylish --project .",
+		"test": "yarn tslint && tsc && NODE_ENV=test nyc ava"
+	},
+	"ava": {
+		"compileEnhancements": false,
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		]
 	}
 }

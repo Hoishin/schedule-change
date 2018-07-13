@@ -4,3 +4,5 @@ node_modules
 build
 config/*
 !config/template.json
+.nyc_output
+coverage
