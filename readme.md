@@ -64,8 +64,8 @@ functions:
   example-event:
     handler: build/example-event.default
     events:
-	  - schedule: cron(0/6 * * * ? *)
-	  # or any other events to invoke this function (like Discord command)
+      - schedule: cron(0/6 * * * ? *)
+      # or any other events to invoke this function (like Discord command)
 ```
 
 Now you can deploy to have your custom schedule change notifier!
