@@ -27,17 +27,17 @@ const separateUniqueAndIntersection = (
 };
 
 const calcRunChange = (
-	beforeRun: EsaRun,
-	beforeRunIndex: number,
-	afterRuns: EsaRun[]
+	iterateeRun: EsaRun,
+	iterateeRunIndex: number,
+	targetRuns: EsaRun[]
 ) => {
-	const similarAfterRunIndex = findSimilarRunIndex(beforeRun, afterRuns);
+	const similarTargetRun = findSimilarRunIndex(iterateeRun, targetRuns);
 
 	let orderChange: OrderChange;
-	if (beforeRunIndex < similarAfterRunIndex) {
-		orderChange = OrderChange.Down;
-	} else if (beforeRunIndex > similarAfterRunIndex) {
+	if (iterateeRunIndex < similarTargetRun) {
 		orderChange = OrderChange.Up;
+	} else if (iterateeRunIndex > similarTargetRun) {
+		orderChange = OrderChange.Down;
 	} else {
 		orderChange = OrderChange.Same;
 	}
@@ -47,7 +47,7 @@ const calcRunChange = (
 	}
 
 	return {
-		game: beforeRun.game,
+		game: iterateeRun.game,
 		orderChange,
 	};
 };
@@ -63,9 +63,9 @@ export const comparer = (before: EsaSchedule, after: EsaSchedule) => {
 	} = separateUniqueAndIntersection(after.runs, before.runs);
 
 	const filteredRunChanges: (ReturnType<typeof calcRunChange> & {})[] = [];
-	beforeIntersection
-		.map((beforeRun, beforeRunIndex) =>
-			calcRunChange(beforeRun, beforeRunIndex, afterIntersection)
+	afterIntersection
+		.map((afterRun, afterRunIndex) =>
+			calcRunChange(afterRun, afterRunIndex, beforeIntersection)
 		)
 		.forEach(change => {
 			if (change) {

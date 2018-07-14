@@ -63,8 +63,8 @@ describe('comparer', () => {
 
 	it('move a run down', () => {
 		afterSchedule.runs.push(afterSchedule.runs.splice(2, 1)[0]);
-		const r = m.comparer(beforeSchedule, afterSchedule).changedRuns[0];
-		expect(r).toEqual(
+		const r = m.comparer(beforeSchedule, afterSchedule).changedRuns;
+		expect(r).toContainEqual(
 			expect.objectContaining({
 				game: 'game2',
 				orderChange: OrderChange.Down,
