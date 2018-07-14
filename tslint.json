@@ -1,0 +1,13 @@
+{
+	"extends": "tslint-xo",
+	"rules": {
+		"no-reference": false,
+		"underscore-consistent-invocation": [true, { "style": "static" }]
+	},
+	"linterOptions": {
+		"exclude": [
+			"**/*.json",
+			"node_modules/**/*"
+		]
+	}
+}
