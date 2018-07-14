@@ -1,5 +1,5 @@
 {
-	"extends": "tslint-xo",
+	"extends": ["tslint-xo", "tslint-config-prettier"],
 	"rules": {
 		"no-reference": false,
 		"underscore-consistent-invocation": [true, { "style": "static" }]
