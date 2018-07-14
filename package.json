@@ -49,6 +49,9 @@
 		"testMatch": [
 			"**/*.test.ts"
 		],
-		"collectCoverage": true
+		"collectCoverage": true,
+		"collectCoverageFrom": [
+			"src/**/*.ts"
+		]
 	}
 }
