@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import {DynamoClient} from './dynamo';
 import {DiscordClient} from './discord';
-import {Schedule} from '../types';
+import {Schedule, DiscordEmbed} from '../types';
 
 export {DynamoClient, DiscordClient};
 
@@ -11,8 +11,8 @@ export const scheduleChange = <O, I, D, T>(
 	eventName: string,
 	url: URL,
 	parser: (data: O) => Schedule<I, D>,
-	comparer: (before: Schedule<I, D>, after: Schedule<I, D>) => T,
-	formatter: (compareResult: T) => string | string[] | void
+	comparator: (before: Schedule<I, D>, after: Schedule<I, D>) => T,
+	formatter: (compareResult: T) => string | DiscordEmbed[] | void
 ) => {
 	const dynamoClient = new DynamoClient<Schedule<I, D>>();
 	const discordClient = new DiscordClient(eventName);
@@ -34,7 +34,11 @@ export const scheduleChange = <O, I, D, T>(
 			return;
 		}
 
-		const compareResult = comparer(before, after);
+		const compareResult = comparator(before, after);
+
+		if (!compareResult) {
+			return;
+		}
 
 		// Compare and get message strings. If it's empty, exit.
 		const message = formatter(compareResult);
@@ -45,13 +49,7 @@ export const scheduleChange = <O, I, D, T>(
 		}
 
 		// Send messages to Discord. If it is array of strings, send them concurrently.
-		if (Array.isArray(message)) {
-			await Promise.all(
-				message.map(async msg => discordClient.output(msg))
-			);
-		} else {
-			await discordClient.output(message);
-		}
+		await discordClient.output(message);
 
 		// Save new schedule
 		await dynamoClient.put(eventName, after);

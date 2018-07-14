@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {Config} from '../types';
+import {Config, DiscordEmbed} from '../types';
 
 const stage = process.env.SLS_STAGE || 'development';
 // tslint:disable:no-var-requires
@@ -9,7 +9,7 @@ const discordConfig = config.discord;
 export class DiscordClient {
 	constructor(private readonly eventName: string) {}
 
-	public async output(content: string) {
+	public async output(content: string | DiscordEmbed[]) {
 		await Promise.all(
 			discordConfig.output.map(async url =>
 				this.post(url, this.eventName, content)
@@ -25,12 +25,26 @@ export class DiscordClient {
 		);
 	}
 
-	private async post(url: string, username: string, content: string) {
-		const slicedContent = content.slice(0, 2000);
-		const params = {
+	private async post(
+		url: string,
+		username: string,
+		content: string | DiscordEmbed[]
+	) {
+		const params: {
+			username: string;
+			content?: string;
+			embeds?: DiscordEmbed[];
+		} = {
 			username,
-			content: slicedContent,
 		};
-		await axios.post(url, params);
+		if (typeof content === 'string') {
+			params.content = content;
+			await axios.post(url, params);
+		} else {
+			while (content.length > 0) {
+				params.embeds = content.splice(0, 5);
+				await axios.post(url, params);
+			}
+		}
 	}
 }
