@@ -4,8 +4,8 @@ import {EsaRun, OrderChange, EsaSchedule} from './types';
 const runKeys: (keyof EsaRun)[] = ['game', 'runners', 'platform', 'category'];
 
 const findSimilarRunIndex = (run: EsaRun, target: EsaRun[]) =>
-	target.findIndex(
-		targetRun => runKeys.every(key => targetRun[key] === run[key])
+	target.findIndex(targetRun =>
+		runKeys.every(key => targetRun[key] === run[key])
 	);
 
 const separateUniqueAndIntersection = (
@@ -31,13 +31,13 @@ const calcRunChange = (
 	iterateeRunIndex: number,
 	targetRuns: EsaRun[]
 ) => {
-	const similarTargetRun = findSimilarRunIndex(iterateeRun, targetRuns);
+	const similarTargetRunIndex = findSimilarRunIndex(iterateeRun, targetRuns);
 
 	let orderChange: OrderChange;
-	if (iterateeRunIndex < similarTargetRun) {
-		orderChange = OrderChange.Up;
-	} else if (iterateeRunIndex > similarTargetRun) {
+	if (iterateeRunIndex < similarTargetRunIndex) {
 		orderChange = OrderChange.Down;
+	} else if (iterateeRunIndex > similarTargetRunIndex) {
+		orderChange = OrderChange.Up;
 	} else {
 		orderChange = OrderChange.Same;
 	}
@@ -49,6 +49,7 @@ const calcRunChange = (
 	return {
 		game: iterateeRun.game,
 		orderChange,
+		targetRunIndex: similarTargetRunIndex,
 	};
 };
 
@@ -63,10 +64,22 @@ export const comparer = (before: EsaSchedule, after: EsaSchedule) => {
 	} = separateUniqueAndIntersection(after.runs, before.runs);
 
 	const filteredRunChanges: (ReturnType<typeof calcRunChange> & {})[] = [];
-	afterIntersection
-		.map((afterRun, afterRunIndex) =>
-			calcRunChange(afterRun, afterRunIndex, beforeIntersection)
-		)
+	beforeIntersection
+		.map((beforeRun, beforeRunIndex) => {
+			const change = calcRunChange(
+				beforeRun,
+				beforeRunIndex,
+				afterIntersection
+			);
+			if (change) {
+				const movedRun = afterIntersection.splice(
+					change.targetRunIndex,
+					1
+				)[0];
+				afterIntersection.splice(beforeRunIndex, 0, movedRun);
+			}
+			return change;
+		})
 		.forEach(change => {
 			if (change) {
 				filteredRunChanges.push(change);
