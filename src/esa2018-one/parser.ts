@@ -27,7 +27,7 @@ const convertRawDataToRun = (
 	category: removeMarkdownLink(
 		item.data[searchColumnIndex('category', columns)]
 	),
-	index
+	index,
 });
 
 export const parser = (rawData: Horaro) => {

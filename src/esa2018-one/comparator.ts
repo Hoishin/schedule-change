@@ -1,7 +1,7 @@
 import * as JsDiff from 'diff';
 import {EsaSchedule, EsaRun} from './types';
 
-const runKeys: (keyof EsaRun)[] = ['game', 'runners', 'platform', 'category']
+const runKeys: (keyof EsaRun)[] = ['game', 'runners', 'platform', 'category'];
 
 export const comparator = (before: EsaSchedule, after: EsaSchedule) => {
 	if (
