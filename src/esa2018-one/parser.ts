@@ -14,6 +14,7 @@ const removeMarkdownLink = (markdownLink: string | null) =>
 
 const convertRawDataToRun = (
 	item: Horaro['data']['items'][0],
+	index: number,
 	columns: string[]
 ) => ({
 	game: removeMarkdownLink(item.data[searchColumnIndex('game', columns)]),
@@ -26,13 +27,14 @@ const convertRawDataToRun = (
 	category: removeMarkdownLink(
 		item.data[searchColumnIndex('category', columns)]
 	),
+	index
 });
 
 export const parser = (rawData: Horaro) => {
 	const columns = rawData.data.columns;
 	return {
-		runs: rawData.data.items.map(item =>
-			convertRawDataToRun(item, columns)
+		runs: rawData.data.items.map((item, index) =>
+			convertRawDataToRun(item, index, columns)
 		),
 		data: {
 			updatedAt: rawData.data.updated,

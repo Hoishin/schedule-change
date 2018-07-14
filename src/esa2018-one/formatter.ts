@@ -1,52 +1,67 @@
-import {comparer} from './comparer';
+import {comparator} from './comparator';
+import {DiscordEmbed} from '../types';
 
-type ComparerResult = ReturnType<typeof comparer>;
+type ComparatorResult = ReturnType<typeof comparator>;
 
-const addedRunFormatter = (addedRuns: ComparerResult['addedRuns']) =>
-	addedRuns
-		.map(
-			run =>
-				`${run.game} by ${run.runners} (${run.platform}, ${
-					run.category
-				})`
-		)
-		.join('\n');
+const timestamp = new Date();
 
-const deletedRunFormatter = (deletedRuns: ComparerResult['deletedRuns']) =>
-	deletedRuns.map(run => run.game).join('\n');
+const makeEmbed = (
+	title: string,
+	color: number,
+	fields: DiscordEmbed['fields']
+): DiscordEmbed => ({
+	author: {
+		name: title,
+		icon_url:
+			'https://yt3.ggpht.com/a-/ACSszfFfgW4b3ws_SI8FqS2IU5QCCjjUTnLye_GScg=s900-mo-c-c0xffffffff-rj-k-no',
+	},
+	timestamp,
+	color,
+	fields,
+	provider: {
+		name: 'schedule-change',
+		url: 'https://github.com/japaneserestream/schedule-change',
+	},
+});
 
-const changedRunFormatter = (changedRuns: ComparerResult['changedRuns']) =>
-	changedRuns
-		.map(run => {
-			return `${run.game}: ${run.orderChange}`;
-		})
-		.join('\n');
-
-const formatterGenerator = function*(result: ComparerResult) {
-	if (result.addedRuns.length > 0) {
-		yield `
-**Added Runs**
-${addedRunFormatter(result.addedRuns)}
-`;
-	}
-
-	if (result.deletedRuns.length > 0) {
-		yield `
-**Deleted Runs**
-${deletedRunFormatter(result.deletedRuns)}
-`;
-	}
-
-	if (result.changedRuns.filter(Boolean).length === 0) {
+export const formatter = (result: ComparatorResult) => {
+	if (!result) {
 		return;
 	}
 
-	yield `
-**Changed Runs**
-${changedRunFormatter(result.changedRuns)}
-`;
-};
+	const output: DiscordEmbed[] = [];
 
-export const formatter = (compareResult: ComparerResult) => [
-	...formatterGenerator(compareResult),
-];
+	for (const diff of result) {
+		if (diff.added) {
+			output.push(
+				makeEmbed(
+					'Run Added',
+					0x4164f4,
+					diff.value.map(run => ({
+						name: `${run.game || '???'} (${run.index})`,
+						value: [run.runners, run.category, run.platform].join(
+							'\n'
+						),
+						inline: true,
+					}))
+				)
+			);
+		} else if (diff.removed) {
+			output.push(
+				makeEmbed(
+					'Run Removed',
+					0xf44141,
+					diff.value.map(run => ({
+						name: `${run.game || '???'} (${run.index})`,
+						value: [run.runners, run.category, run.platform].join(
+							'\n'
+						),
+						inline: true,
+					}))
+				)
+			);
+		}
+	}
+
+	return output;
+};

@@ -5,6 +5,7 @@ export interface EsaRun {
 	runners: string | null;
 	platform: string | null;
 	category: string | null;
+	index: number;
 }
 
 export interface EsaSchedule extends Schedule<EsaRun, {}> {
@@ -12,9 +13,4 @@ export interface EsaSchedule extends Schedule<EsaRun, {}> {
 	data: {
 		updatedAt: string;
 	};
-}
-export const enum OrderChange {
-	Up = '↑',
-	Down = '↓',
-	Same = '→',
 }

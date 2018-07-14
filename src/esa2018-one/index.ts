@@ -1,6 +1,6 @@
 import {URL} from 'url';
 import {scheduleChange} from '../lib';
-import {comparer} from './comparer';
+import {comparator} from './comparator';
 import {parser} from './parser';
 import {formatter} from './formatter';
 
@@ -10,5 +10,5 @@ const url = new URL(
 );
 
 export default () => {
-	scheduleChange(name, url, parser, comparer, formatter);
+	scheduleChange(name, url, parser, comparator, formatter);
 };
