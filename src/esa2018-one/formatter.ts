@@ -21,10 +21,8 @@ const changedRunFormatter = (changedRuns: ComparerResult['changedRuns']) =>
 			const fieldChanges = run.fieldChanges.map(
 				({field, before, after}) => `${field}: ${before} -> ${after}`
 			);
-			return `
-${run.game}: ${run.orderChange}
-${fieldChanges.join('\t\n')}
-`;
+			return `${run.game}: ${run.orderChange}
+	${fieldChanges.join('\t\n')}`;
 		})
 		.join('\n');
 
@@ -32,7 +30,8 @@ const formatterGenerator = function*(result: ComparerResult) {
 	if (result.addedRuns.length > 0) {
 		yield `
 **Added Runs**
-${addedRunFormatter(result.addedRuns)}`;
+${addedRunFormatter(result.addedRuns)}
+`;
 	}
 
 	if (result.deletedRuns.length > 0) {
