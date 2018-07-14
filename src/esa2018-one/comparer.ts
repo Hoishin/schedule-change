@@ -73,13 +73,20 @@ export const comparer = (before: EsaSchedule, after: EsaSchedule) => {
 		intersection: afterIntersection,
 	} = separateUniqueAndIntersection(after.runs, before.runs);
 
-	const runChanges = beforeIntersection.map((beforeRun, beforeRunIndex) =>
-		calcRunChange(beforeRun, beforeRunIndex, afterIntersection)
-	);
+	const filteredRunChanges: (ReturnType<typeof calcRunChange> & {})[] = [];
+	beforeIntersection
+		.map((beforeRun, beforeRunIndex) =>
+			calcRunChange(beforeRun, beforeRunIndex, afterIntersection)
+		)
+		.forEach(change => {
+			if (change) {
+				filteredRunChanges.push(change);
+			}
+		});
 
 	return {
 		deletedRuns,
 		addedRuns,
-		changedRuns: runChanges,
+		changedRuns: filteredRunChanges,
 	};
 };

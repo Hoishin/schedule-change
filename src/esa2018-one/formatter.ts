@@ -18,9 +18,6 @@ const deletedRunFormatter = (deletedRuns: ComparerResult['deletedRuns']) =>
 const changedRunFormatter = (changedRuns: ComparerResult['changedRuns']) =>
 	changedRuns
 		.map(run => {
-			if (!run) {
-				return;
-			}
 			const fieldChanges = run.fieldChanges.map(
 				({field, before, after}) => `${field}: ${before} -> ${after}`
 			);
@@ -55,4 +52,6 @@ ${changedRunFormatter(result.changedRuns)}
 `;
 };
 
-export const formatter = (compareResult: ComparerResult) => [...formatterGenerator(compareResult)];
+export const formatter = (compareResult: ComparerResult) => [
+	...formatterGenerator(compareResult),
+];
