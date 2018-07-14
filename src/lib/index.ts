@@ -40,7 +40,7 @@ export const scheduleChange = <O, I, D, T>(
 		const message = formatter(compareResult);
 
 		// No messages output, exit.
-		if (!message) {
+		if (!message || message.length === 0) {
 			return;
 		}
 
