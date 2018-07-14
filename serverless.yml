@@ -18,12 +18,10 @@ provider:
 functions:
   sgdq2018:
     handler: build/sgdq2018.default
-    events:
-      - schedule: cron(0/6 * * * ? *)
   esa2018-one:
     handler: build/esa2018-one.default
     events:
-      - schedule: cron(0/6 * * * ? *)
+      - schedule: cron(0/1 * * * ? *)
 
 resources:
   Resources:
