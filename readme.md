@@ -1,51 +1,71 @@
 # Schedule Change
+[![Build Status](https://travis-ci.org/JapaneseRestream/schedule-change.svg?branch=master)](https://travis-ci.org/JapaneseRestream/schedule-change)
 
 Microservice to fetch speedrunning events schedule and notify changes to Discord webhook. Made for language restreamers.
 
-Written in TypeScript. Run `yarn build` to compile.
+Written in TypeScript. Run `yarn build` to transpile to JavaScript.
 
 This app is designed to be used with [AWS Lambda with Serverless Framework](https://serverless.com/framework/docs/providers/aws/guide/quick-start/).
 
-The `main.js` file exposes the API after compiling.
-
 ## Deploy to AWS Lambda
 
-First setup `.env` file in this directory. It will be available in runtime with `dotenv`.
-
-For example, for GDQ's donation tracker,
-
-```conf
-EVENT_NAME=SGDQ2018             # name as you like
-OUTPUT_WEBHOOK="https://..."    # main output of schedule changes
-SYSTEM_WEBHOOK="https://..."    # system info output (errors etc)
-TRACKER_EVENT_ID=12             # tracker's event ID
-TRACKER_URL="https://..."       # tracker's endpoint
-# ... and any custom environment variables
-```
+First setup JSON config file in `config` directory. Refer to `template.json`. File name must be Serverless' stage.
 
 Then deploy with
 
-```bash
-sls deploy -s MYEVENT2050
+```
+$ sls deploy -s [development/staging/production/etc]
 ```
 
 ## Invoke
 
 It runs every 6 minutes by default, but you can manually invoke the function.
 
-```bash
-sls invoke [local] -f run -s MYEVENT2050
+```
+$ sls invoke (local) -f run -s MYEVENT2050
 ```
 
 Adding `local` lets you run the function on your local machine instead of actual AWS Lambda instances.
 
-## Customize for other endpoints (*Future plan)
+## Adding custom notifier
 
-This service is devided into 4 main stages.
+> Please refer to what's inside src/esa2018-one as well.
 
-- `Fetcher`: Fetch, parse, and abstract the latest schedule
+This service is devided into 3 main stages.
+
+- `Fetcher`: Fetch and parse into data format that is useful for the rest of the logic.
 - `Comparer`: Compare with last schedule and get diff
 - `Formatter`: Format the diff into human-readable string
-- `Notifier`: Send notification to Discord
 
-Also, as side jobs, it saves the latest schedule data to DB, and notify errors to system output.
+Each stage is represented by functions that takes the data from previous stage as arguments.
+
+In `src/example-event.ts`,
+```ts
+import {scheduleChange} from '../lib';
+
+export default () => {
+	scheduleChange(
+		'example-event',
+		new URL('https://example.com/schedule'),
+		(rawData) => parseRawData(rawData),
+		(lastFetchedSchedule, latestSchedule) =>
+			compareThem(lastFetchedSchedule, latestSchedule),
+		(compareResult) => formatThem(compareResult)
+	)
+}
+```
+
+The `scheduleChange` funtion is strongly typed with generics, allowing to define each function freely and safely.
+
+Then register this function in `serverless.yml`.
+
+```yaml
+functions:
+  example-event:
+    handler: build/example-event.default
+    events:
+	  - schedule: cron(0/6 * * * ? *)
+	  # or any other events to invoke this function (like Discord command)
+```
+
+Now you can deploy to have your custom schedule change notifier!
