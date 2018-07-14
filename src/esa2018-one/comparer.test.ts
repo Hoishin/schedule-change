@@ -40,25 +40,15 @@ describe('comparer', () => {
 	it('different game but same runner', () => {
 		afterSchedule.runs[3] = makeRun('_game', 'runner3');
 		expect(
-			m.comparer(beforeSchedule, afterSchedule).changedRuns[0]
-				.fieldChanges
-		).toContainEqual({
-			field: 'game',
-			before: 'game3',
-			after: '_game',
-		});
+			m.comparer(beforeSchedule, afterSchedule).addedRuns
+		).toContainEqual(expect.objectContaining({game: '_game', runners: 'runner3'}));
 	});
 
 	it('different runner but same game', () => {
 		afterSchedule.runs[3] = makeRun('game3', '_runner');
 		expect(
-			m.comparer(beforeSchedule, afterSchedule).changedRuns[0]
-				.fieldChanges
-		).toContainEqual({
-			field: 'runners',
-			before: 'runner3',
-			after: '_runner',
-		});
+			m.comparer(beforeSchedule, afterSchedule).addedRuns
+		).toContainEqual(expect.objectContaining({game: 'game3', runners: '_runner'}));
 	});
 
 	it('add a run', () => {
