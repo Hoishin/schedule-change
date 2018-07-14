@@ -18,11 +18,7 @@ const deletedRunFormatter = (deletedRuns: ComparerResult['deletedRuns']) =>
 const changedRunFormatter = (changedRuns: ComparerResult['changedRuns']) =>
 	changedRuns
 		.map(run => {
-			const fieldChanges = run.fieldChanges.map(
-				({field, before, after}) => `${field}: ${before} -> ${after}`
-			);
-			return `${run.game}: ${run.orderChange}
-	${fieldChanges.join('\t\n')}`;
+			return `${run.game}: ${run.orderChange}`;
 		})
 		.join('\n');
 

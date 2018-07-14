@@ -5,8 +5,7 @@ const runKeys: (keyof EsaRun)[] = ['game', 'runners', 'platform', 'category'];
 
 const findSimilarRunIndex = (run: EsaRun, target: EsaRun[]) =>
 	target.findIndex(
-		targetRun =>
-			targetRun.game === run.game || targetRun.runners === run.runners
+		targetRun => runKeys.every(key => targetRun[key] === run[key])
 	);
 
 const separateUniqueAndIntersection = (
@@ -15,12 +14,12 @@ const separateUniqueAndIntersection = (
 ) => {
 	const uniqueRuns: EsaRun[] = [];
 	const intersection: EsaRun[] = [];
-	for (const afterRun of iteratee) {
-		const similarTargetRunIndex = findSimilarRunIndex(afterRun, target);
+	for (const iterateeRun of iteratee) {
+		const similarTargetRunIndex = findSimilarRunIndex(iterateeRun, target);
 		if (similarTargetRunIndex === -1) {
-			uniqueRuns.push(afterRun);
+			uniqueRuns.push(iterateeRun);
 		} else {
-			intersection.push(afterRun);
+			intersection.push(iterateeRun);
 		}
 	}
 
@@ -33,7 +32,6 @@ const calcRunChange = (
 	afterRuns: EsaRun[]
 ) => {
 	const similarAfterRunIndex = findSimilarRunIndex(beforeRun, afterRuns);
-	const afterRun = afterRuns[similarAfterRunIndex];
 
 	let orderChange: OrderChange;
 	if (beforeRunIndex < similarAfterRunIndex) {
@@ -44,22 +42,13 @@ const calcRunChange = (
 		orderChange = OrderChange.Same;
 	}
 
-	const fieldChanges = runKeys
-		.filter(key => beforeRun[key] !== afterRun[key])
-		.map(key => ({
-			field: key,
-			before: beforeRun[key],
-			after: afterRun[key],
-		}));
-
-	if (orderChange === OrderChange.Same && fieldChanges.length === 0) {
+	if (orderChange === OrderChange.Same) {
 		return;
 	}
 
 	return {
 		game: beforeRun.game,
 		orderChange,
-		fieldChanges,
 	};
 };
 

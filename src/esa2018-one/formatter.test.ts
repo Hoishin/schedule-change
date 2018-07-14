@@ -1,5 +1,5 @@
 import * as m from './formatter';
-import { OrderChange } from './types';
+import {OrderChange} from './types';
 
 describe('formatter', () => {
 	it('outputs nothing if no changes', () => {
@@ -27,14 +27,13 @@ describe('formatter', () => {
 		const expected = `
 **Deleted Runs**
 deleted game
-`
+`;
 		expect(r).toContain(expected);
 	});
 
 	it('formats added run', () => {
 		const r = m.formatter({
-			deletedRuns: [
-			],
+			deletedRuns: [],
 			addedRuns: [
 				{
 					game: 'added game',
@@ -48,34 +47,25 @@ deleted game
 		const expected = `
 **Added Runs**
 added game by added runners (added platform, added category)
-`
+`;
 		expect(r).toContain(expected);
 	});
 
 	it('formats changed run', () => {
 		const r = m.formatter({
-			deletedRuns: [
-			],
-			addedRuns: [
-			],
+			deletedRuns: [],
+			addedRuns: [],
 			changedRuns: [
-{
-
-				game: 'changed game',
-				fieldChanges: [{
-					field: 'category',
-					before: 'hoge',
-					after: 'fuga',
-				}],
-				orderChange: OrderChange.Up
-}
+				{
+					game: 'changed game',
+					orderChange: OrderChange.Up,
+				},
 			],
 		});
 		const expected = `
 **Changed Runs**
 changed game: ↑
-	category: hoge -> fuga
-`
+`;
 		expect(r).toContain(expected);
 	});
 });
