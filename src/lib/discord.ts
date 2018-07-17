@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {chunk} from 'lodash';
 import {Config, DiscordEmbed} from '../types';
 
 const stage = process.env.SLS_STAGE || 'development';
@@ -30,21 +31,28 @@ export class DiscordClient {
 		username: string,
 		content: string | DiscordEmbed[]
 	) {
-		const params: {
-			username: string;
-			content?: string;
-			embeds?: DiscordEmbed[];
-		} = {
-			username,
-		};
-		if (typeof content === 'string') {
-			params.content = content;
-			await axios.post(url, params);
-		} else {
-			while (content.length > 0) {
-				params.embeds = content.splice(0, 5);
-				await axios.post(url, params);
+		const params = {username};
+
+		if (typeof content !== 'string') {
+			const chunks = chunk(content, 5);
+			for (const item of chunks) {
+				await axios.post(url, {
+					...params,
+					embeds: item,
+				});
 			}
+			return;
+		}
+
+		const splitContent = content.match(/{1,2000}/g);
+		if (!splitContent) {
+			return;
+		}
+		for (const item of splitContent) {
+			await axios.post(url, {
+				...params,
+				content: item,
+			});
 		}
 	}
 }
