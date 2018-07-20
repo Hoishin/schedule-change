@@ -21,12 +21,12 @@ functions:
   esa2018-one:
     handler: build/esa2018.one
     events:
-      - schedule: cron(0/3 * * * ? *)
+      - schedule: cron(0/10 * * * ? *)
     memorySize: 128
   esa2018-two:
     handler: build/esa2018.two
     events:
-      - schedule: cron(0/3 * * * ? *)
+      - schedule: cron(0/10 * * * ? *)
     memorySize: 128
 
 resources:
