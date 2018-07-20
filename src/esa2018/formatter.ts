@@ -3,7 +3,6 @@ import {DiscordEmbed} from '../types';
 
 type ComparatorResult = ReturnType<typeof comparator>;
 
-const timestamp = new Date();
 const iconUrl =
 	'https://yt3.ggpht.com/a-/ACSszfFfgW4b3ws_SI8FqS2IU5QCCjjUTnLye_GScg=s900-mo-c-c0xffffffff-rj-k-no';
 const provider = {
@@ -20,7 +19,7 @@ const makeEmbed = (
 		name: title,
 		icon_url: iconUrl,
 	},
-	timestamp,
+	timestamp: new Date(),
 	color,
 	fields,
 	provider,
